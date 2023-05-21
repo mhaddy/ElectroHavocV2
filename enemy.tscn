@@ -6,7 +6,7 @@
 size = Vector2(12, 12)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4i3o2"]
-size = Vector2(14, 14)
+size = Vector2(15, 14)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_wucat"]
 polygon = PackedVector2Array(-6, -6, -6, 0, 0, 7, 6, 0, 6, -6)
@@ -21,6 +21,7 @@ shape = SubResource("RectangleShape2D_glg4v")
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_4i3o2")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
@@ -32,7 +33,9 @@ polygon = PackedVector2Array(-6, -6, -6, -6, -6, 0, 0, 7, 6, 0, 6, -6)
 occluder = SubResource("OccluderPolygon2D_wucat")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-avoidance_enabled = true
+path_metadata_flags = 0
+radius = 16.0
+max_neighbors = 20
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.25

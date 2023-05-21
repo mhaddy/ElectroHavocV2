@@ -1,36 +1,40 @@
 extends CharacterBody2D
 
-@export var CHASE_DELAY: float = 75
+#@export var CHASE_DELAY: float = 75
 @export var CHASE_SPEED: float = 100
 
 @onready var player: CharacterBody2D = $"../../player"
 @onready var movement_target_position: Vector2 = player.global_position
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
 
-var motion: Vector2 = Vector2()
+#var motion: Vector2 = Vector2.ZERO
+#var sync_velocity: Vector2 = Vector2.ZERO
 
 # basic guidance: https://docs.godotengine.org/en/stable/tutorials/navigation/navigation_introduction_2d.html
+#
+# need to wait for this PR that merges tilemap layers together to make a navMesh in 2d: 
+# https://github.com/godotengine/godot/pull/70724
+# it adds 2D navigation mesh baking with proper agent size so you can just use 
+# a NavigationRegion2D and ignore the entire TileMap build-in navigation
+
 func _ready():
-	# These values need to be adjusted for the actor's speed
-	# and the navigation layout
-	nav_agent.path_desired_distance = 4
-	nav_agent.target_desired_distance = 4
-	
 	# Make sure to not await during _ready
 	call_deferred("actor_setup")
 
 func _physics_process(delta):
-	if nav_agent.is_navigation_finished():
+	# if nav_agent.is_navigation_finished(): # bugs out
+	if nav_agent.is_target_reached() or not nav_agent.is_target_reachable():
+#		sync_velocity = Vector2.ZERO
 		return
 	
-	var current_agent_position: Vector2 = global_position
+	var current_agent_position: Vector2 = global_position # enemy position
 	var next_path_position: Vector2 = nav_agent.get_next_path_position()
 	
 	var new_velocity: Vector2 = next_path_position - current_agent_position
 	new_velocity = new_velocity.normalized()
 	new_velocity = new_velocity * CHASE_SPEED
-		
 	velocity = new_velocity
+#	sync_velocity = new_velocity
 	move_and_slide()
 
 # this code works just as well as the code above
