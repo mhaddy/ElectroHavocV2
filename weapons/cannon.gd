@@ -1,8 +1,8 @@
 extends Node2D
 
 @export var BULLET: PackedScene
-@export var BULLET_SPEED: float = 500
-@export var FIRE_RATE: float = 0.09
+@export var BULLET_SPEED: float = 750
+@export var FIRE_DELAY: float = 0.09
 
 @onready var muzzle = $muzzle
 @onready var timer = $Timer
@@ -10,7 +10,7 @@ extends Node2D
 var can_fire: bool = true
 
 func _ready():
-	timer.wait_time = FIRE_RATE
+	timer.wait_time = FIRE_DELAY
 	
 func _physics_process(delta):
 	pass
@@ -25,7 +25,7 @@ func fire():
 		get_tree().get_root().call_deferred("add_child", bullet)
 		can_fire = false
 		timer.start()
-		#await get_tree().create_timer(FIRE_RATE).timeout
+		#await get_tree().create_timer(FIRE_DELAY).timeout
 
 func _on_timer_timeout():
 	can_fire = true

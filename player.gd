@@ -26,6 +26,7 @@ func _physics_process(delta):
 		gun_controller.fire()
 
 func kill():
+	print("yargh I'm dead")
 	get_tree().reload_current_scene()
 	
 func _on_area_2d_body_entered(body):
