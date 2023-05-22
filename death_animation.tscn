@@ -1,0 +1,85 @@
+[gd_scene load_steps=13 format=3 uid="uid://ndxrflc4mau8"]
+
+[ext_resource type="Script" path="res://particles_explosion.gd" id="1_bsgp5"]
+[ext_resource type="Texture2D" uid="uid://du0k2af0s4dx3" path="res://assets/Flame.png" id="1_cvwnj"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2ty4w"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_t7cwc"]
+offsets = PackedFloat32Array(0, 0.155556, 0.318519, 0.718518, 0.888889, 1)
+colors = PackedColorArray(0.964706, 0.917647, 0.0156863, 0, 0.972549, 0.933333, 0.184314, 0.768627, 1, 0.913725, 0, 1, 0.858824, 0.168627, 0.0313726, 1, 0.839216, 0.0235294, 0.00392157, 0.717647, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_q7xw3"]
+gradient = SubResource("Gradient_t7cwc")
+width = 100
+
+[sub_resource type="Curve" id="Curve_wvi1p"]
+max_value = 100.0
+_data = [Vector2(0, 8.18182), 0.0, 0.0, 0, 0, Vector2(0.674699, 52.7273), 0.0, 0.0, 0, 0, Vector2(0.963855, 79.0909), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_j1pqw"]
+curve = SubResource("Curve_wvi1p")
+
+[sub_resource type="Curve" id="Curve_0qxud"]
+min_value = -1.0
+_data = [Vector2(0.114458, 0.636364), 0.0, 0.0, 0, 0, Vector2(0.831325, -0.6), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_wkx8m"]
+curve = SubResource("Curve_0qxud")
+
+[sub_resource type="Curve" id="Curve_0kjeb"]
+_data = [Vector2(0.126506, 0.118182), 0.0, 0.0, 0, 0, Vector2(0.506024, 0.427273), 0.0, 0.0, 0, 0, Vector2(0.740964, 0.527273), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_b0rfp"]
+curve = SubResource("Curve_0kjeb")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dgngc"]
+lifetime_randomness = 1.0
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+direction = Vector3(0, 0, 0)
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 653.42
+initial_velocity_max = 873.68
+angular_velocity_min = -287.0
+angular_velocity_max = -21.26
+damping_min = 200.0
+damping_max = 300.0
+damping_curve = SubResource("CurveTexture_j1pqw")
+angle_min = 1.0
+angle_max = 462.3
+scale_min = 0.1
+scale_max = 0.1
+scale_curve = SubResource("CurveTexture_b0rfp")
+color_ramp = SubResource("GradientTexture1D_q7xw3")
+hue_variation_min = -0.42
+hue_variation_max = 0.19
+hue_variation_curve = SubResource("CurveTexture_wkx8m")
+turbulence_noise_strength = 7.1
+turbulence_noise_scale = 7.11
+turbulence_noise_speed_random = 4.53
+turbulence_influence_max = 0.22
+
+[node name="DeathAnimation" type="GPUParticles2D"]
+material = SubResource("CanvasItemMaterial_2ty4w")
+amount = 64
+process_material = SubResource("ParticleProcessMaterial_dgngc")
+texture = ExtResource("1_cvwnj")
+lifetime = 0.6
+explosiveness = 1.0
+script = ExtResource("1_bsgp5")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

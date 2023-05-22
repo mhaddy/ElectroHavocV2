@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name Enemy
 
+var Death_Animation: PackedScene = preload("res://death_animation.tscn")
+
 #@export var CHASE_DELAY: float = 75
 @export var CHASE_SPEED: float = 100
 
@@ -86,8 +88,10 @@ func _on_area_2d_body_entered(body):
 #		queue_free()
 
 func _on_stats_no_health():
+	var explosion = Death_Animation.instantiate()
+	explosion.position = get_global_position()
+	get_tree().get_root().add_child(explosion)
 	queue_free()
-	# TODO: death animation
 
 # TODO: change to raycast?
 func _on_attack_range_body_entered(body):
