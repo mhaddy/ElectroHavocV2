@@ -1,22 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://cg1bbewcgn82"]
+[gd_scene load_steps=4 format=3 uid="uid://cyctmp0aj6i5l"]
 
-[ext_resource type="Script" path="res://bullet.gd" id="1_skmi5"]
-[ext_resource type="Texture2D" uid="uid://bmjw83yifnfg" path="res://assets/Laser Sprites/06.png" id="2_0ec1r"]
+[ext_resource type="Script" path="res://enemy_bullet.gd" id="1_r84c1"]
+[ext_resource type="Texture2D" uid="uid://c3nu68vdnf7se" path="res://assets/Laser Sprites/02.png" id="2_f7mvx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ayxu2"]
 radius = 3.0
 height = 10.0
 
 [node name="bullet" type="RigidBody2D"]
-collision_layer = 2
+collision_layer = 4
 collision_mask = 3
 max_contacts_reported = 1
 contact_monitor = true
-script = ExtResource("1_skmi5")
+script = ExtResource("1_r84c1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_0ec1r")
+texture = ExtResource("2_f7mvx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708

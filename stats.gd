@@ -1,7 +1,7 @@
 extends Node
 class_name Stats
 
-@export var max_HP: int = 10
+@export var max_HP: int = 1
 
 @onready var current_HP: int = max_HP:
 	get:

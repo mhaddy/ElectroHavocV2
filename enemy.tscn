@@ -18,15 +18,17 @@ polygon = PackedVector2Array(-4.99998, -5.00002, -5, -1.81e-05, -2.17199e-05, 6,
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pctlv"]
 size = Vector2(102, 16)
 
-[node name="enemy" type="CharacterBody2D"]
+[node name="enemy" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 4
 collision_mask = 7
 safe_margin = 2.5
 script = ExtResource("1_1e2ha")
 
 [node name="WeaponMountPoint" type="Marker2D" parent="."]
+visible = false
 y_sort_enabled = true
 position = Vector2(9, 0)
+rotation = 6.28319
 
 [node name="AttackLight" type="PointLight2D" parent="."]
 visible = false
@@ -58,19 +60,20 @@ occluder = SubResource("OccluderPolygon2D_wucat")
 path_metadata_flags = 0
 radius = 16.0
 max_neighbors = 20
+debug_enabled = true
 
 [node name="PathUpdateTimer" type="Timer" parent="."]
 wait_time = 0.25
 autostart = true
 
 [node name="Stats" parent="." instance=ExtResource("2_3rdj3")]
-max_HP = 3
 
 [node name="AttackRange" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
+visible = false
 position = Vector2(42, 0)
 shape = SubResource("RectangleShape2D_pctlv")
 

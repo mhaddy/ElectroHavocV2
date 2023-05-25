@@ -79,13 +79,12 @@ func set_movement_target(movement_target: Vector2):
 
 func move_and_attack():
 	attack_timer.start()
-	gun_controller.fire()
+	#gun_controller.fire()
 
 func _on_area_2d_body_entered(body):
 	if "bullet" in body.name:
 		stats.current_HP -= body.damage
 		print("hit ", stats.current_HP, "/", stats.max_HP)
-#		queue_free()
 
 func _on_stats_no_health():
 	var explosion = Death_Animation.instantiate()
@@ -95,12 +94,16 @@ func _on_stats_no_health():
 
 # TODO: change to raycast?
 func _on_attack_range_body_entered(body):
-	if body == player:
-		current_state = state.ATTACKING
+	pass
+	# I'm not happy with the way enemy shooting is working, so disabling
+	# this for now
+	#if body.is_in_group("player"):
+	#	current_state = state.ATTACKING
 
 func _on_path_update_timer_timeout():
 #	print("looking for player")
 	set_movement_target(player.global_position)
 
 func _on_attack_timer_timeout():
+	print("done")
 	current_state = state.SEEKING
