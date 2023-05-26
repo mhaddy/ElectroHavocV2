@@ -39,7 +39,7 @@ texture = ExtResource("3_h0gc7")
 texture_scale = 2.0
 
 [node name="WeaponMountPoint" type="Marker2D" parent="."]
-position = Vector2(10, 0)
+position = Vector2(13, 0)
 
 [node name="GunController" parent="." instance=ExtResource("4_igc43")]
 

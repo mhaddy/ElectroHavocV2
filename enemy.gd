@@ -26,6 +26,7 @@ enum state {
 
 var attacking: bool = false
 var current_state: state = state.SEEKING
+#@onready var stats = AgentStats  # access global, auto-loaded singleton
 
 # basic guidance: https://docs.godotengine.org/en/stable/tutorials/navigation/navigation_introduction_2d.html
 #
@@ -37,6 +38,7 @@ var current_state: state = state.SEEKING
 func _ready():
 	# Make sure to not await during _ready
 	call_deferred("actor_setup")
+#	AgentStats.no_health.connect(_on_stats_no_health)
 
 func _physics_process(delta):
 	match current_state:
@@ -91,6 +93,7 @@ func _on_stats_no_health():
 	explosion.position = get_global_position()
 	get_tree().get_root().add_child(explosion)
 	queue_free()
+	SignalBus.emit_signal("update_score", 1)
 
 # TODO: change to raycast?
 func _on_attack_range_body_entered(body):

@@ -4,13 +4,14 @@ extends Node2D
 
 var score: int = 0
 
-func _ready():
+func _ready() -> void:
 	pass
+	# enable for full screen
 	# DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
 
-func new_game():
+func new_game() -> void:
 	hud.update_score(score)
 	hud.show_message("Get Ready")
 	
-func game_over():
+func game_over() -> void:
 	hud.show_game_over()

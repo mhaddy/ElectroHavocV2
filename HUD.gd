@@ -5,8 +5,13 @@ extends CanvasLayer
 @onready var start_button = $StartButton
 @onready var score_label = $ScoreLabel
 
+var score: int = 0
+
 signal start_game
 
+func _ready():
+	SignalBus.update_score.connect(_on_update_score)
+	
 func show_message(text):
 	message.text = text
 	message.show()
@@ -23,7 +28,8 @@ func show_game_over():
 	await get_tree().create_timer(1.0).timeout
 	start_button.show()
 
-func update_score(score):
+func _on_update_score(points):
+	score += points
 	score_label.text = str(score)
 
 func _on_message_timer_timeout():

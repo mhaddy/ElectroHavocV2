@@ -10,7 +10,7 @@
 size = Vector2(12, 12)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4i3o2"]
-size = Vector2(15, 14)
+size = Vector2(17, 16)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_wucat"]
 polygon = PackedVector2Array(-4.99998, -5.00002, -5, -1.81e-05, -2.17199e-05, 6, 5, 1.81e-05, 5.00002, -4.99998)
@@ -60,13 +60,10 @@ occluder = SubResource("OccluderPolygon2D_wucat")
 path_metadata_flags = 0
 radius = 16.0
 max_neighbors = 20
-debug_enabled = true
 
 [node name="PathUpdateTimer" type="Timer" parent="."]
 wait_time = 0.25
 autostart = true
-
-[node name="Stats" parent="." instance=ExtResource("2_3rdj3")]
 
 [node name="AttackRange" type="Area2D" parent="."]
 collision_layer = 4
@@ -84,8 +81,10 @@ one_shot = true
 [node name="GunController" parent="." instance=ExtResource("4_7aj7q")]
 STARTING_WEAPON = ExtResource("5_m35n4")
 
+[node name="Stats" parent="." instance=ExtResource("2_3rdj3")]
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="PathUpdateTimer" to="." method="_on_path_update_timer_timeout"]
-[connection signal="no_health" from="Stats" to="." method="_on_stats_no_health"]
 [connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="no_health" from="Stats" to="." method="_on_stats_no_health"]

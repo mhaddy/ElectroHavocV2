@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://bmjw83yifnfg" path="res://assets/Laser Sprites/06.png" id="2_0ec1r"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ayxu2"]
-radius = 3.0
-height = 10.0
+radius = 7.0
+height = 22.0
 
 [node name="bullet" type="RigidBody2D"]
 collision_layer = 2
@@ -15,7 +15,7 @@ contact_monitor = true
 script = ExtResource("1_skmi5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.35, 0.35)
 texture = ExtResource("2_0ec1r")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

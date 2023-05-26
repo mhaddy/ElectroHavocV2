@@ -13,6 +13,7 @@ var all_spawn_points: Array
 
 var enemies_remaining_to_spawn: int
 var enemies_killed_this_wave: int
+#@onready var stats: Stats = AgentStats # access global, auto-loaded singleton
 
 func _ready() -> void:
 	randomize()
