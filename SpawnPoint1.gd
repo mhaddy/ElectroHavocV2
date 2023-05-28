@@ -16,16 +16,19 @@ var enemies_killed_this_wave: int
 #@onready var stats: Stats = AgentStats # access global, auto-loaded singleton
 
 func _ready() -> void:
+	SignalBus.start_game.connect(_on_start_game)
+	
 	randomize()
 	
 	all_waves = waves.get_children()
-	start_next_wave()
-	
 	all_spawn_points = spawn_points.get_children()
 
 func start_next_wave() -> void:
 	enemies_killed_this_wave = 0
 	current_wave_num += 1
+	# increment counter here because we're visually displaying it
+	# not iterating an array
+	SignalBus.emit_signal("update_wave", current_wave_num+1)
 	
 	if current_wave_num < all_waves.size(): # temp
 		current_wave = all_waves[current_wave_num]
@@ -64,3 +67,6 @@ func _on_timer_timeout() -> void:
 	else:
 		if enemies_killed_this_wave == current_wave.NUM_ENEMIES:
 			start_next_wave()
+
+func _on_start_game() -> void:
+	start_next_wave()

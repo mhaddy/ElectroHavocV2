@@ -9,7 +9,6 @@
 size = Vector2(16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n7f4r"]
-size = Vector2(18, 18)
 
 [node name="player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2

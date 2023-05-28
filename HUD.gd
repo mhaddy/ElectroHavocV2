@@ -4,18 +4,19 @@ extends CanvasLayer
 @onready var message_timer = $MessageTimer
 @onready var start_button = $StartButton
 @onready var score_label = $ScoreLabel
+@onready var wave_label = $WaveLabel
 
 var score: int = 0
 
-signal start_game
-
 func _ready():
 	SignalBus.update_score.connect(_on_update_score)
+	SignalBus.update_wave.connect(_on_update_wave)
+	SignalBus.start_game.connect(_on_start_game)
 	
 func show_message(text):
+	message_timer.start()
 	message.text = text
 	message.show()
-	message.start()
 	
 func show_game_over():
 	show_message("Game Over")
@@ -31,10 +32,24 @@ func show_game_over():
 func _on_update_score(points):
 	score += points
 	score_label.text = str(score)
+	
+	if score % 10 == 0:
+		Globals.tween_pulsate(score_label)
+	
+func _on_update_wave(wave_num):
+	Globals.tween_pulsate(wave_label)
+	wave_label.text = "Wave "+str(wave_num)
 
 func _on_message_timer_timeout():
-	message.hide()
+	Globals.tween_fade_out(message, 0.5, false)
 
 func _on_start_button_pressed():
 	start_button.hide()
-	start_game.emit()
+	SignalBus.emit_signal("start_game")
+	
+func _on_start_game():
+	score = 0
+	show_message("Get Ready")
+	
+func game_over() -> void:
+	show_game_over()
