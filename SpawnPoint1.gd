@@ -29,6 +29,7 @@ func start_next_wave() -> void:
 	# increment counter here because we're visually displaying it
 	# not iterating an array
 	SignalBus.emit_signal("update_wave", current_wave_num+1)
+	Globals.wave_num = current_wave_num+1
 	
 	if current_wave_num < all_waves.size(): # temp
 		current_wave = all_waves[current_wave_num]
@@ -38,14 +39,13 @@ func start_next_wave() -> void:
 		timer.start()
 	
 func connect_to_enemy_signals(enemy: Enemy) -> void:
-#	clock.time_passed.connect(_on_time_passed)
 	var stats: Stats = enemy.get_node("Stats")
 	stats.no_health.connect(_on_no_health)
 	
 func spawn() -> void:
 	var spawn_point: int = pick_spawn_point()
 	
-	var enemy = ENEMY.instantiate()
+	var enemy: Enemy = ENEMY.instantiate()
 	connect_to_enemy_signals(enemy)
 	var enemy_root = get_parent().find_child("enemies")
 	
@@ -59,7 +59,6 @@ func pick_spawn_point() -> int:
 
 func _on_no_health() -> void:
 	enemies_killed_this_wave += 1
-	print("detect")
 
 func _on_timer_timeout() -> void:
 	if enemies_remaining_to_spawn:

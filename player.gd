@@ -4,10 +4,14 @@ extends CharacterBody2D
 @export var MAX_SPEED: float = 80
 @export var FRICTION: float = 500
 
-@onready var weapon_mount_point = $WeaponMountPoint
-@onready var gun_controller = $GunController
+@onready var weapon_mount_point: Marker2D = $WeaponMountPoint
+@onready var gun_controller: Node = $GunController
+@onready var stats: Stats = $Stats
 
-func _physics_process(delta):
+func _ready() -> void:
+	pass
+
+func _physics_process(delta) -> void:
 	var input_vector = Vector2.ZERO
 	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	input_vector.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
@@ -25,11 +29,13 @@ func _physics_process(delta):
 	if Input.is_action_pressed("primary_action"):
 		gun_controller.fire()
 
-func kill():
-	print("yargh I'm dead")
-	get_tree().reload_current_scene()
-	
-func _on_area_2d_body_entered(body):
+# enemy collides with/damages player
+func _on_area_2d_body_entered(body) -> void:
 	if "enemy" in body.name:
-#		pass
-		kill()
+		stats.current_HP -= body.damage
+		print("enemy hit me ", stats.current_HP, "/", stats.max_HP, ", ", body.damage)
+
+func _on_stats_no_health():
+	print ("game over!")
+	# TODO: explosion
+	SignalBus.emit_signal("game_over")

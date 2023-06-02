@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cy3360w1huhbk"]
+[gd_scene load_steps=8 format=3 uid="uid://cy3360w1huhbk"]
 
 [ext_resource type="Texture2D" uid="uid://cd5alpr7lvkhe" path="res://assets/tank.png" id="1_3el6y"]
 [ext_resource type="Script" path="res://player.gd" id="1_wt4w1"]
 [ext_resource type="Texture2D" uid="uid://cxaj02b7kmw4j" path="res://assets/light.png" id="3_h0gc7"]
 [ext_resource type="PackedScene" uid="uid://bm6effwt4a5pp" path="res://gun_controller.tscn" id="4_igc43"]
+[ext_resource type="PackedScene" uid="uid://vpbs6vjemmyl" path="res://stats.tscn" id="5_4u1ws"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_quy2g"]
 size = Vector2(16, 16)
@@ -42,4 +43,8 @@ position = Vector2(13, 0)
 
 [node name="GunController" parent="." instance=ExtResource("4_igc43")]
 
+[node name="Stats" parent="." instance=ExtResource("5_4u1ws")]
+max_HP = 3
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="no_health" from="Stats" to="." method="_on_stats_no_health"]

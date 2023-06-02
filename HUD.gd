@@ -12,13 +12,15 @@ func _ready():
 	SignalBus.update_score.connect(_on_update_score)
 	SignalBus.update_wave.connect(_on_update_wave)
 	SignalBus.start_game.connect(_on_start_game)
+	SignalBus.game_over.connect(_on_game_over)
 	
 func show_message(text):
 	message_timer.start()
 	message.text = text
 	message.show()
 	
-func show_game_over():
+func _on_game_over():
+	print("received game over")
 	show_message("Game Over")
 	# Wait until the MessageTimer has counted down.
 	await message_timer.timeout
@@ -50,6 +52,3 @@ func _on_start_button_pressed():
 func _on_start_game():
 	score = 0
 	show_message("Get Ready")
-	
-func game_over() -> void:
-	show_game_over()

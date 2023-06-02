@@ -2,8 +2,9 @@ extends Node
 
 @export var STARTING_WEAPON: PackedScene
 
-var equipped_weapon: Node
 @onready var weapon_mount_point = get_parent().find_child("WeaponMountPoint")
+
+var equipped_weapon: Node
 
 func _ready():
 	if STARTING_WEAPON:
@@ -11,10 +12,10 @@ func _ready():
 
 func equip_weapon(weapon_to_equip):
 	if equipped_weapon:
-		print("delete cur weap")
+		#print("delete cur weap")
 		equipped_weapon.queue_free()
 	else:
-		print("no equipped weapon")
+		#print("no equipped weapon")
 		equipped_weapon = weapon_to_equip.instantiate()
 		weapon_mount_point.add_child(equipped_weapon)
 

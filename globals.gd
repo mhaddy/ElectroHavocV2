@@ -1,5 +1,12 @@
 extends Node
 
+var wave_num: int = 1:
+	get:
+		return wave_num
+	set(value):
+		wave_num = value
+		print ("new wave ", wave_num)
+
 func tween_pulsate(node: Node) -> void:
 	#TRANS_QUINT, _QUAD, _ELASTIC are cool too
 	var tween = get_tree().create_tween().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
@@ -17,3 +24,6 @@ func tween_fade_out(node: Node, fade_out_time: float = 1.0, destroy: bool = true
 		tween.tween_callback(node.queue_free)
 	else:
 		tween.tween_callback(node.hide)
+
+func random_sfx(sfx: Array):
+	return load(sfx[randi() % sfx.size()])

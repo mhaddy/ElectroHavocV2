@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 SignalBus="*res://SignalBus.gd"
 Globals="*res://globals.gd"
+AudioManager="*res://audio_manager.tscn"
 
 [display]
 

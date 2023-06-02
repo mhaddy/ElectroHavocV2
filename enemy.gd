@@ -13,9 +13,6 @@ var Death_Animation: PackedScene = preload("res://death_animation.tscn")
 @onready var attack_timer: Timer = $AttackTimer
 @onready var gun_controller: Node = $GunController
 @onready var attack_light: PointLight2D = $AttackLight
-# not currently working:
-# https://www.gotut.net/tweens-in-godot-4/
-# @onready var tween: Tween = get_tree().create_tween()
 
 enum state {
 	SEEKING,
@@ -26,7 +23,16 @@ enum state {
 
 var attacking: bool = false
 var current_state: state = state.SEEKING
-#@onready var stats = AgentStats  # access global, auto-loaded singleton
+var damage: int = -1 # set via Stats instance
+
+var explosion_sfx: Array = [
+	"res://assets/musicSfx/Explosion_v2_variation_01_wav.wav",
+	"res://assets/musicSfx/Explosion_v2_variation_02_wav.wav",
+	"res://assets/musicSfx/Explosion_v2_wav.wav",
+	"res://assets/musicSfx/Explosion_v3_variation_01_wav.wav",
+	"res://assets/musicSfx/Explosion_v3_variation_02_wav.wav",
+	"res://assets/musicSfx/Explosion_v3_wav.wav"
+]
 
 # basic guidance: https://docs.godotengine.org/en/stable/tutorials/navigation/navigation_introduction_2d.html
 #
@@ -35,17 +41,15 @@ var current_state: state = state.SEEKING
 # it adds 2D navigation mesh baking with proper agent size so you can just use 
 # a NavigationRegion2D and ignore the entire TileMap build-in navigation
 
-func _ready():
+func _ready() -> void:
 	# Make sure to not await during _ready
 	call_deferred("actor_setup")
-#	AgentStats.no_health.connect(_on_stats_no_health)
+	
+	damage = stats.damage
 
-func _physics_process(delta):
+func _physics_process(_delta) -> void:
 	match current_state:
 		state.SEEKING:
-#			tween = create_tween()
-#			tween.tween_property(attack_light, "modulate", Color.GREEN, 1)
-			
 			# if nav_agent.is_navigation_finished(): # bugs out
 			if nav_agent.is_target_reached() or not nav_agent.is_target_reachable():
 				return
@@ -61,52 +65,54 @@ func _physics_process(delta):
 			move_and_slide()
 		state.ATTACKING:
 			move_and_attack()
-#			tween = create_tween()
-#			tween.tween_property(attack_light, "modulate", Color.RED, 1)
 
 		state.RETURNING:
 			print("going back")
 		state.RESTING:
 			print("resting")
 
-func actor_setup():
+func actor_setup() -> void:
 	# Wait for the first physics frame so the NavigationServer can sync
 	await get_tree().physics_frame
 	
 	# Now that the navigation map is no longer empty, set the movement target
 	set_movement_target(movement_target_position)
-
-func set_movement_target(movement_target: Vector2):
+	
+func set_movement_target(movement_target: Vector2) -> void:
 	nav_agent.target_position = movement_target
 
-func move_and_attack():
+func move_and_attack() -> void:
 	attack_timer.start()
+	# not happy with the way enemies are firing
 	#gun_controller.fire()
-
-func _on_area_2d_body_entered(body):
+	
+# player shoots enemy
+func _on_area_2d_body_entered(body) -> void:
 	if "bullet" in body.name:
 		stats.current_HP -= body.damage
 		print("hit ", stats.current_HP, "/", stats.max_HP)
 
-func _on_stats_no_health():
+# enemy dies
+func _on_stats_no_health() -> void:
 	var explosion = Death_Animation.instantiate()
 	explosion.position = get_global_position()
 	get_tree().get_root().add_child(explosion)
+	AudioManager.play_sfx(Globals.random_sfx(explosion_sfx))
 	queue_free()
 	SignalBus.emit_signal("update_score", 1)
 
 # TODO: change to raycast?
-func _on_attack_range_body_entered(body):
+func _on_attack_range_body_entered(_body) -> void:
 	pass
 	# I'm not happy with the way enemy shooting is working, so disabling
 	# this for now
 	#if body.is_in_group("player"):
 	#	current_state = state.ATTACKING
 
-func _on_path_update_timer_timeout():
+func _on_path_update_timer_timeout() -> void:
 #	print("looking for player")
 	set_movement_target(player.global_position)
 
-func _on_attack_timer_timeout():
+func _on_attack_timer_timeout() -> void:
 	print("done")
 	current_state = state.SEEKING
