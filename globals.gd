@@ -1,17 +1,14 @@
 extends Node
 
-var wave_num: int = 1:
-	get:
-		return wave_num
-	set(value):
-		wave_num = value
-		print ("new wave ", wave_num)
-		
-var score: int = 0:
-	get:
-		return score
-	set(value):
-		score = value
+# TODO: Is there a reason why I'd use setget here?
+var wave_num: int = 1
+#	get:
+#		return wave_num
+#	set(value):
+#		wave_num = value
+#		print ("new wave ", wave_num)
+var score: int = 0
+var high_score: int = 0
 
 func tween_pulsate(node: Node) -> void:
 	#TRANS_QUINT, _QUAD, _ELASTIC are cool too

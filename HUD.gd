@@ -14,6 +14,7 @@ var finish_game_sfx: Array = [
 	"res://assets/musicSfx/finishGame.mp3"
 ]
 
+# TODO:
 #var Finish_Game_Halo: PackedScene = preload("res://halo_effect.tscn")
 
 func _ready():
@@ -38,8 +39,6 @@ func _on_game_over():
 	Globals.tween_appear(message)
 	show_message("Game Over!")
 	AudioManager.play_sfx(Globals.random_sfx(gameover_sfx))
-
-	# TODO -- NEW HIGH SCORE SCENE, ETC.
 	
 	# Make a one-shot timer and wait for it to finish.
 	await get_tree().create_timer(3.0).timeout
@@ -48,9 +47,15 @@ func _on_game_over():
 func _on_update_score(points):
 	Globals.score += points
 	score_label.text = str(Globals.score)
-	
+		
 	if Globals.score % 10 == 0:
 		Globals.tween_pulsate(score_label)
+	
+	# TODO: Display this in a message queue bottom left corner of screen
+	# include combos and other modifier info
+	if Globals.score > Globals.high_score:
+		Globals.high_score = Globals.score
+		print("New high score, ", Globals.high_score)
 	
 func _on_update_wave(wave_num):
 	Globals.tween_pulsate(wave_label)
