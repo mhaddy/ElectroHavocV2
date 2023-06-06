@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://lrue5eclvkw4"]
+
+[ext_resource type="Texture2D" uid="uid://c4ng0q85q844k" path="res://assets/random_selection.png" id="1_584y8"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_24g7d"]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_ury8p"]
+offsets = PackedFloat32Array(0, 0.524691, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.919753, 0.919753, 0.919753, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ibv7t"]
+gradient = SubResource("Gradient_ury8p")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sut7f"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_max = 360.0
+scale_min = 0.6
+color_ramp = SubResource("GradientTexture1D_ibv7t")
+hue_variation_min = -0.15
+hue_variation_max = 0.52
+anim_offset_max = 1.0
+
+[node name="HaloEffect" type="GPUParticles2D"]
+material = SubResource("CanvasItemMaterial_24g7d")
+process_material = SubResource("ParticleProcessMaterial_sut7f")
+texture = ExtResource("1_584y8")
+local_coords = true

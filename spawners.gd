@@ -27,16 +27,18 @@ func _ready() -> void:
 func start_next_wave() -> void:
 	enemies_killed_this_wave = 0
 	current_wave_index += 1 # advance the index
-	Globals.wave_num = current_wave_index+1 # visual display
 
-	SignalBus.emit_signal("update_wave", Globals.wave_num)
-
-	if current_wave_index < all_waves.size(): # temp
+	if current_wave_index < all_waves.size():
+		Globals.wave_num = current_wave_index+1 # visual display
+		SignalBus.emit_signal("update_wave", Globals.wave_num)
+		
 		current_wave = all_waves[current_wave_index]
 		
 		enemies_remaining_to_spawn = current_wave.NUM_ENEMIES
 		timer.wait_time = current_wave.SEC_BETWEEN_SPAWNS
 		timer.start()
+	else:
+		SignalBus.emit_signal("finish_game")
 	
 func connect_to_enemy_signals(enemy: Enemy) -> void:
 	var stats: Stats = enemy.get_node("Stats")
