@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cd5alpr7lvkhe" path="res://assets/tank.png" id="1_7dxvr"]
 [ext_resource type="Script" path="res://world.gd" id="1_kfj4g"]
 [ext_resource type="PackedScene" uid="uid://devfqwbwpqxty" path="res://enemy.tscn" id="2_7obsa"]
-[ext_resource type="Script" path="res://SpawnPoint1.gd" id="4_13kro"]
+[ext_resource type="Script" path="res://spawners.gd" id="4_hcpyf"]
 [ext_resource type="Script" path="res://wave.gd" id="6_mtac0"]
 [ext_resource type="PackedScene" uid="uid://ce1jr4egm8lvy" path="res://hud.tscn" id="7_qgees"]
 
@@ -59,12 +59,16 @@ script = ExtResource("1_kfj4g")
 position = Vector2(672, 339)
 position_smoothing_enabled = true
 
-[node name="player" parent="." instance=ExtResource("1_0r3oh")]
-position = Vector2(672, 339)
-MAX_SPEED = 275.0
+[node name="player" type="Node2D" parent="."]
 
-[node name="PlayerCamera" type="RemoteTransform2D" parent="player"]
-remote_path = NodePath("../../WorldCamera")
+[node name="player" parent="player" instance=ExtResource("1_0r3oh")]
+position = Vector2(672, 339)
+
+[node name="PlayerCamera" type="RemoteTransform2D" parent="player/player"]
+remote_path = NodePath("../../../WorldCamera")
+
+[node name="PlayerSpawnPoint" type="Marker2D" parent="player"]
+position = Vector2(672, 384)
 
 [node name="enemies" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -103,7 +107,7 @@ layer_1/tile_data = PackedInt32Array(1376258, 0, 0, 1376259, 0, 0, 1376260, 0, 0
 
 [node name="Spawners" type="Node2D" parent="."]
 position = Vector2(571, 80)
-script = ExtResource("4_13kro")
+script = ExtResource("4_hcpyf")
 ENEMY = ExtResource("2_7obsa")
 
 [node name="Timer" type="Timer" parent="Spawners"]

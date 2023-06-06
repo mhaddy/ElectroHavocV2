@@ -8,6 +8,7 @@ script = ExtResource("1_vfyof")
 
 [node name="bgm" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_ffg4n")
+volume_db = -10.0
 autoplay = true
 
 [node name="effect_player" type="Node" parent="."]

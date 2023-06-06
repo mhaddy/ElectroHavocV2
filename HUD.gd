@@ -6,7 +6,10 @@ extends CanvasLayer
 @onready var score_label = $ScoreLabel
 @onready var wave_label = $WaveLabel
 
-var score: int = 0
+var message_original_position: Vector2
+var gameover_sfx: Array = [
+	"res://assets/musicSfx/gameOver.ogg"
+]
 
 func _ready():
 	SignalBus.update_score.connect(_on_update_score)
@@ -14,28 +17,30 @@ func _ready():
 	SignalBus.start_game.connect(_on_start_game)
 	SignalBus.game_over.connect(_on_game_over)
 	
+	message_original_position = message.global_position
+	
 func show_message(text):
+	message.global_position = message_original_position
 	message_timer.start()
 	message.text = text
 	message.show()
 	
 func _on_game_over():
-	print("received game over")
-	show_message("Game Over")
-	# Wait until the MessageTimer has counted down.
-	await message_timer.timeout
+	Globals.tween_appear(message)
+	show_message("Game Over!")
+	AudioManager.play_sfx(Globals.random_sfx(gameover_sfx))
 
-	message.text = "Stay alive! LMB to shoot."
-	message.show()
+	# TODO -- NEW HIGH SCORE SCENE, ETC.
+	
 	# Make a one-shot timer and wait for it to finish.
-	await get_tree().create_timer(1.0).timeout
-	start_button.show()
+	await get_tree().create_timer(3.0).timeout
+	Globals.tween_appear(start_button)
 
 func _on_update_score(points):
-	score += points
-	score_label.text = str(score)
+	Globals.score += points
+	score_label.text = str(Globals.score)
 	
-	if score % 10 == 0:
+	if Globals.score % 10 == 0:
 		Globals.tween_pulsate(score_label)
 	
 func _on_update_wave(wave_num):
@@ -50,5 +55,7 @@ func _on_start_button_pressed():
 	SignalBus.emit_signal("start_game")
 	
 func _on_start_game():
-	score = 0
+	# wave updated in spawners.gd
+	Globals.score = 0
+	SignalBus.emit_signal("update_score", 0)
 	show_message("Get Ready")

@@ -1,12 +1,20 @@
 extends CharacterBody2D
+class_name Player
 
 @export var ACCELERATION: float = 500
-@export var MAX_SPEED: float = 80
+@export var MAX_SPEED: float = 275
 @export var FRICTION: float = 500
 
 @onready var weapon_mount_point: Marker2D = $WeaponMountPoint
 @onready var gun_controller: Node = $GunController
 @onready var stats: Stats = $Stats
+@onready var collision_shape_2d = $CollisionShape2D
+
+var Death_Animation: PackedScene = preload("res://player_death_animation.tscn")
+var explosion_sfx: Array = [
+	"res://assets/musicSfx/playerExplosion.wav"
+]
+var world_camera: Camera2D
 
 func _ready() -> void:
 	pass
@@ -33,9 +41,17 @@ func _physics_process(delta) -> void:
 func _on_area_2d_body_entered(body) -> void:
 	if "enemy" in body.name:
 		stats.current_HP -= body.damage
-		print("enemy hit me ", stats.current_HP, "/", stats.max_HP, ", ", body.damage)
+#		print("enemy hit me ", stats.current_HP, "/", stats.max_HP, ", ", body.damage)
 
 func _on_stats_no_health():
 	print ("game over!")
-	# TODO: explosion
 	SignalBus.emit_signal("game_over")
+	
+	var explosion = Death_Animation.instantiate()
+	explosion.position = get_global_position()
+	get_tree().get_root().add_child(explosion)
+	
+	queue_free()
+	
+	AudioManager.play_sfx(Globals.random_sfx(explosion_sfx))
+

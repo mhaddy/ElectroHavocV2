@@ -1,9 +1,18 @@
-[gd_scene load_steps=8 format=3 uid="uid://ndxrflc4mau8"]
+[gd_scene load_steps=9 format=3 uid="uid://bh6prx6m3c4cr"]
 
-[ext_resource type="Script" path="res://particles_explosion.gd" id="1_bsgp5"]
+[ext_resource type="Script" path="res://particles_explosion.gd" id="1_63sct"]
+[ext_resource type="Texture2D" uid="uid://dmwyicuc8v8ux" path="res://assets/Laser Sprites/21.png" id="1_suj0m"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2ty4w"]
 blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_t7cwc"]
+offsets = PackedFloat32Array(0, 0.155556, 0.362963, 0.681481, 1)
+colors = PackedColorArray(0.964706, 0.917647, 0.0156863, 0, 0.972549, 0.933333, 0.184314, 0.768627, 0.479705, 0.0464706, 0.353729, 1, 1.92523e-07, 0.552023, 0.496801, 1, 1, 1, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_q7xw3"]
+gradient = SubResource("Gradient_t7cwc")
+width = 5
 
 [sub_resource type="Curve" id="Curve_wvi1p"]
 max_value = 100.0
@@ -12,15 +21,6 @@ point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_j1pqw"]
 curve = SubResource("Curve_wvi1p")
-
-[sub_resource type="Curve" id="Curve_a4a1c"]
-min_value = -1.0
-_data = [Vector2(0.0569948, -0.981818), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_wyoqy"]
-width = 32
-curve = SubResource("Curve_a4a1c")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dgngc"]
 lifetime_randomness = 1.0
@@ -31,9 +31,10 @@ initial_velocity_max = 652.63
 damping_min = 250.0
 damping_max = 300.0
 damping_curve = SubResource("CurveTexture_j1pqw")
-scale_max = 2.0
-hue_variation_max = 1.0
-hue_variation_curve = SubResource("CurveTexture_wyoqy")
+scale_min = 0.5
+color_ramp = SubResource("GradientTexture1D_q7xw3")
+hue_variation_min = -0.34
+hue_variation_max = 0.51
 turbulence_noise_strength = 7.1
 turbulence_noise_scale = 7.11
 turbulence_noise_speed_random = 4.53
@@ -45,11 +46,12 @@ self_modulate = Color(1, 1, 1, 0.666667)
 material = SubResource("CanvasItemMaterial_2ty4w")
 amount = 256
 process_material = SubResource("ParticleProcessMaterial_dgngc")
+texture = ExtResource("1_suj0m")
 explosiveness = 0.65
 collision_base_size = 0.5
 trail_enabled = true
 trail_lifetime = 0.8
-script = ExtResource("1_bsgp5")
+script = ExtResource("1_63sct")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0

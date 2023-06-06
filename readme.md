@@ -3,7 +3,7 @@ Top-down 2d shooter for a game jam with the prompt "chain reaction". Dubbed Elec
 
 ## Planned Additions
 * ~Concept of waves~
-* Player and ~enemy~ death animations
+* ~Player and enemy death animations~
 * Score (~points~, time alive, high score)
   * Then persist this
 * ~Pathfinding (reading about A* algorithm and Godot's implementation of it)~
@@ -12,6 +12,7 @@ Top-down 2d shooter for a game jam with the prompt "chain reaction". Dubbed Elec
 * Figure out how to make particles damage other enemies (thus delivering on the "chain reaction" prompt)
 * ~Varied enemies with health~
 * Power-ups and different weapons, if only to change bullet sprite and particle design
+* Finish the game loop
 
 ## Notes
 ### Color Palette

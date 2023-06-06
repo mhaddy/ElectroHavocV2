@@ -25,6 +25,11 @@ AudioManager="*res://audio_manager.tscn"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/energy_saving/keep_screen_on=false
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
+mouse_cursor/custom_image="res://assets/crosshair006.png"
+mouse_cursor/custom_image_hotspot=Vector2(64, 64)
 
 [input]
 

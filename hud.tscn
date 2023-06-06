@@ -43,16 +43,16 @@ wait_time = 2.0
 one_shot = true
 
 [node name="Message" type="Label" parent="."]
-visible = false
+custom_minimum_size = Vector2(500, 0)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -87.0
-offset_top = -34.5
-offset_right = 87.0
-offset_bottom = 34.5
+offset_left = -250.0
+offset_top = -39.0
+offset_right = 250.0
+offset_bottom = 39.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_ipwue")
@@ -62,18 +62,22 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="StartButton" type="Button" parent="."]
+custom_minimum_size = Vector2(100, 75)
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -24.0
-offset_top = -66.0
-offset_right = 27.0
-offset_bottom = -38.0
+offset_left = -45.0
+offset_top = -106.0
+offset_right = 55.0
+offset_bottom = -31.0
 grow_horizontal = 2
 grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_ipwue")
+theme_override_font_sizes/font_size = 32
 text = "Start"
 
 [connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]
