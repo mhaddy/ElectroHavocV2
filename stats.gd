@@ -1,10 +1,13 @@
 extends Node
 class_name Stats
 
-@export var max_HP: int = 1
-@export var damage: int = 1
+signal no_health
 
-@onready var current_HP: int = max_HP:
+@export var MAX_HP: int = 1 + HP_modifier() # wave difficulty
+@export var DAMAGE: int = 1
+@export var CHASE_SPEED: float = 100
+
+@onready var current_HP: int = MAX_HP:
 	get:
 		return current_HP
 	set(value):
@@ -12,13 +15,10 @@ class_name Stats
 		if current_HP <= 0:
 			emit_signal("no_health")
 
-# not currently used...
-#@onready var current_damage: int = damage:
-#	get:
-#		return current_damage
-#	set(value):
-#		current_damage = value
-#		if current_damage <= 0:
-#			print("level up damage")
+func _ready() -> void:
+	var chase_multiplier = float("1.%s" % (Globals.wave_num-1))
+	CHASE_SPEED *= chase_multiplier
 
-signal no_health
+# increment enemy health by 1 every other wave
+func HP_modifier() -> int:
+	return floor(clamp(Globals.wave_num/2, 0, Globals.wave_num/2))

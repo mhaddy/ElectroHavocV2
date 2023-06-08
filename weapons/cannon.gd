@@ -2,7 +2,7 @@ extends Node2D
 
 @export var BULLET: PackedScene
 @export var BULLET_SPEED: float = 1000
-@export var FIRE_DELAY: float = 0.15
+@export var FIRE_DELAY: float = 0.12
 
 @onready var muzzle: Marker2D = $muzzle
 @onready var timer: Timer = $Timer

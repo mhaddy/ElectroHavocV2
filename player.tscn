@@ -44,7 +44,6 @@ position = Vector2(16, 0)
 [node name="GunController" parent="." instance=ExtResource("4_igc43")]
 
 [node name="Stats" parent="." instance=ExtResource("5_4u1ws")]
-max_HP = 3
 
 [node name="PlayerCamera" type="RemoteTransform2D" parent="."]
 

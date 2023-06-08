@@ -170,6 +170,12 @@ position = Vector2(1176, 96)
 [node name="SpawnPointE" type="Marker2D" parent="Spawners/SpawnPoints"]
 position = Vector2(1117, 340)
 
+[node name="SpawnPointCR" type="Marker2D" parent="Spawners/SpawnPoints"]
+position = Vector2(832, 336)
+
+[node name="SpawnPointCL" type="Marker2D" parent="Spawners/SpawnPoints"]
+position = Vector2(512, 344)
+
 [node name="SpawnPointSE" type="Marker2D" parent="Spawners/SpawnPoints"]
 position = Vector2(1184, 640)
 

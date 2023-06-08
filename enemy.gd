@@ -3,14 +3,12 @@ class_name Enemy
 
 var Death_Animation: PackedScene = preload("res://death_animation.tscn")
 
-#@export var CHASE_DELAY: float = 75
-@export var CHASE_SPEED: float = 100
-
 @onready var movement_target_position: Vector2
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var stats: Stats = $Stats
 @onready var attack_timer: Timer = $AttackTimer
 @onready var gun_controller: Node = $GunController
+@onready var polygon_2d = $Polygon2D
 @onready var attack_light: PointLight2D = $AttackLight
 
 enum state {
@@ -46,13 +44,14 @@ func _ready() -> void:
 	SignalBus.start_game.connect(_on_start_game)
 	SignalBus.game_over.connect(_on_game_over)
 	
+	call_deferred("actor_setup") # Make sure to not await during _ready
 	player = identify_player() # TODO: Clean this up
+		
+	randomize() # for enemy colors
 	
-	# Make sure to not await during _ready
-	call_deferred("actor_setup")
+	damage = stats.DAMAGE
+	wave_modifier()
 	
-	damage = stats.damage
-
 func _physics_process(_delta) -> void:
 	if player != null: # i.e., player isn't dead
 		movement_target_position = player.global_position
@@ -71,7 +70,7 @@ func _physics_process(_delta) -> void:
 	#				movement_target_position = Vector2.ZERO
 					
 				new_velocity = new_velocity.normalized()
-				new_velocity = new_velocity * CHASE_SPEED
+				new_velocity = new_velocity * stats.CHASE_SPEED
 				velocity = new_velocity
 				look_at(movement_target_position)
 				move_and_slide()
@@ -123,11 +122,25 @@ func self_destruct() -> void:
 #	for enemy in enemies_alive:
 #		stats.current_HP = 0
 
+# enemy modifiers/wave
+# HP, CHASE_SPEED set in stats
+func wave_modifier() -> void:
+	var scale_multiplier = float("1.%s" % (Globals.wave_num-1))
+	var colors = [
+		Color(0.08,0.27,0.29,1),
+		Color(0.06,0.25,0.41,1),
+		Color(0.31,0.18,0.38,1),
+		Color(0.41,0.14,0.19,1)
+	]
+	
+	self.scale *= scale_multiplier
+	polygon_2d.modulate = colors[randi() % colors.size()]
+	
 # player shoots enemy
 func _on_area_2d_body_entered(body) -> void:
 	if "bullet" in body.name:
 		stats.current_HP -= body.damage
-#		print("hit ", stats.current_HP, "/", stats.max_HP)
+		print("hit ", stats.current_HP, "/", stats.MAX_HP)
 
 # enemy dies
 func _on_stats_no_health() -> void:

@@ -49,7 +49,7 @@ shape = SubResource("RectangleShape2D_4i3o2")
 debug_color = Color(0.890196, 0.309804, 0.239216, 0.419608)
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-modulate = Color(0.831373, 0.282353, 0.666667, 1)
+modulate = Color(0.415686, 0.133333, 0.196078, 1)
 rotation = -1.5708
 polygon = PackedVector2Array(-6, -6, -6, -6, -6, 0, 0, 7, 6, 0, 6, -6)
 
