@@ -3,7 +3,8 @@ extends CanvasLayer
 @onready var message = $Message
 @onready var message_timer = $MessageTimer
 @onready var try_again_button = $TryAgainButton
-@onready var score_label = $ScoreLabel
+@onready var score_num = $ScoreLabel/ScoreNum
+@onready var high_score_num = $HighScoreLabel/HighScoreNum
 @onready var wave_label = $WaveLabel
 
 var message_original_position: Vector2
@@ -47,16 +48,16 @@ func _on_game_over():
 
 func _on_update_score(points):
 	Globals.score += points
-	score_label.text = str(Globals.score)
+	score_num.text = str(Globals.score)
 		
 	if Globals.score % 10 == 0:
-		Globals.tween_pulsate(score_label)
+		Globals.tween_pulsate(score_num)
 	
 	# TODO: Display this in a message queue bottom left corner of screen
 	# include combos and other modifier info
 	if Globals.score > Globals.high_score:
 		Globals.high_score = Globals.score
-		print("New high score, ", Globals.high_score)
+		high_score_num.text = str(Globals.high_score)
 	
 func _on_update_wave(wave_num):
 	Globals.tween_pulsate(wave_label)

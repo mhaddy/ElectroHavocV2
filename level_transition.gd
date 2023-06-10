@@ -1,4 +1,4 @@
-extends Node
+extends CanvasLayer
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 

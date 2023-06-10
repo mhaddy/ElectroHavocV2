@@ -7,6 +7,7 @@ var wave_num: int = 1
 #	set(value):
 #		wave_num = value
 #		print ("new wave ", wave_num)
+
 var score: int = 0
 var high_score: int = 0
 

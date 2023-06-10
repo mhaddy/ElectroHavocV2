@@ -6,28 +6,58 @@
 script = ExtResource("1_rv2ow")
 
 [node name="ScoreLabel" type="Label" parent="."]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_top = 12.0
-offset_right = 20.0
-offset_bottom = 54.0
-grow_horizontal = 2
+offset_left = 15.0
+offset_right = 88.0
+offset_bottom = 42.0
 size_flags_horizontal = 4
-text = "0"
-horizontal_alignment = 1
+theme_override_font_sizes/font_size = 24
+text = "Score"
 vertical_alignment = 1
 
-[node name="WaveLabel" type="Label" parent="."]
+[node name="ScoreNum" type="Label" parent="ScoreLabel"]
+layout_mode = 0
+offset_top = 27.0
+offset_right = 40.0
+offset_bottom = 69.0
+text = "0"
+
+[node name="HighScoreLabel" type="Label" parent="."]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -152.0
-offset_top = 12.0
-offset_right = -23.0
-offset_bottom = 54.0
+offset_left = -198.0
+offset_right = -15.0
+offset_bottom = 42.0
 grow_horizontal = 0
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 24
+text = "High Score"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="HighScoreNum" type="Label" parent="HighScoreLabel"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = 6.0
+offset_bottom = 48.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "0"
+horizontal_alignment = 2
+
+[node name="WaveLabel" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -64.5
+offset_right = 64.5
+offset_bottom = 42.0
+grow_horizontal = 2
 size_flags_horizontal = 8
 text = "Wave 1"
 horizontal_alignment = 2
@@ -63,9 +93,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -45.0
+offset_left = -79.5
 offset_top = -106.0
-offset_right = 55.0
+offset_right = 89.5
 offset_bottom = -31.0
 grow_horizontal = 2
 grow_vertical = 0
