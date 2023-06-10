@@ -28,8 +28,26 @@ hue_variation_min = -0.15
 hue_variation_max = 0.52
 anim_offset_max = 1.0
 
-[node name="HaloEffect" type="GPUParticles2D"]
+[node name="MarginContainer" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 480
+theme_override_constants/margin_top = 180
+theme_override_constants/margin_right = 480
+theme_override_constants/margin_bottom = 180
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 2
+
+[node name="HaloEffect" type="GPUParticles2D" parent="CenterContainer"]
+visible = false
 material = SubResource("CanvasItemMaterial_24g7d")
 process_material = SubResource("ParticleProcessMaterial_sut7f")
 texture = ExtResource("1_584y8")
 local_coords = true
+
+[node name="ColorRect" type="ColorRect" parent="CenterContainer"]
+layout_mode = 2

@@ -2,7 +2,7 @@ extends CanvasLayer
 
 @onready var message = $Message
 @onready var message_timer = $MessageTimer
-@onready var start_button = $StartButton
+@onready var try_again_button = $TryAgainButton
 @onready var score_label = $ScoreLabel
 @onready var wave_label = $WaveLabel
 
@@ -21,6 +21,7 @@ func _ready():
 	SignalBus.update_score.connect(_on_update_score)
 	SignalBus.update_wave.connect(_on_update_wave)
 	SignalBus.start_game.connect(_on_start_game)
+	SignalBus.try_again.connect(_on_start_game)
 	SignalBus.game_over.connect(_on_game_over)
 	SignalBus.finish_game.connect(_on_finish_game)
 	
@@ -42,7 +43,7 @@ func _on_game_over():
 	
 	# Make a one-shot timer and wait for it to finish.
 	await get_tree().create_timer(3.0).timeout
-	Globals.tween_appear(start_button)
+	Globals.tween_appear(try_again_button)
 
 func _on_update_score(points):
 	Globals.score += points
@@ -64,11 +65,12 @@ func _on_update_wave(wave_num):
 func _on_message_timer_timeout():
 	Globals.tween_fade_out(message, 0.5, false)
 
-func _on_start_button_pressed():
-	start_button.hide()
-	SignalBus.emit_signal("start_game")
+func _on_try_again_button_pressed():
+	try_again_button.hide()
+	SignalBus.emit_signal("try_again")
 	
 func _on_start_game():
+	print('here')
 	# wave updated in spawners.gd
 	Globals.score = 0
 	SignalBus.emit_signal("update_score", 0)
@@ -88,4 +90,4 @@ func _on_finish_game():
 	
 	await get_tree().create_timer(3.0).timeout
 	
-	Globals.tween_appear(start_button)
+	Globals.tween_appear(try_again_button)

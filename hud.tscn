@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://ce1jr4egm8lvy"]
+[gd_scene load_steps=2 format=3 uid="uid://ce1jr4egm8lvy"]
 
 [ext_resource type="Script" path="res://HUD.gd" id="1_rv2ow"]
-[ext_resource type="FontFile" uid="uid://b4ih28antg7il" path="res://assets/Xolonium-Regular.ttf" id="2_ipwue"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_rv2ow")
@@ -16,8 +15,6 @@ offset_right = 20.0
 offset_bottom = 54.0
 grow_horizontal = 2
 size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("2_ipwue")
-theme_override_font_sizes/font_size = 32
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -32,8 +29,6 @@ offset_right = -23.0
 offset_bottom = 54.0
 grow_horizontal = 0
 size_flags_horizontal = 8
-theme_override_fonts/font = ExtResource("2_ipwue")
-theme_override_font_sizes/font_size = 32
 text = "Wave 1"
 horizontal_alignment = 2
 vertical_alignment = 1
@@ -55,13 +50,13 @@ offset_right = 250.0
 offset_bottom = 39.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("2_ipwue")
 theme_override_font_sizes/font_size = 64
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="StartButton" type="Button" parent="."]
+[node name="TryAgainButton" type="Button" parent="."]
+visible = false
 custom_minimum_size = Vector2(100, 75)
 anchors_preset = 7
 anchor_left = 0.5
@@ -76,9 +71,7 @@ grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_fonts/font = ExtResource("2_ipwue")
-theme_override_font_sizes/font_size = 32
-text = "Start"
+text = "Try Again"
 
 [connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]
-[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="TryAgainButton" to="." method="_on_try_again_button_pressed"]

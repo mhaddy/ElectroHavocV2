@@ -5,6 +5,7 @@ extends Node
 
 func _ready() -> void:
 	SignalBus.start_game.connect(_on_start_game)
+	SignalBus.try_again.connect(_on_start_game)
 	SignalBus.game_over.connect(_on_game_over)
 	
 	bgm.stream_paused = true

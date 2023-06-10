@@ -5,11 +5,13 @@ extends Node2D
 @onready var world_camera_node_path: NodePath = "/root/world/WorldCamera"
 
 func _ready() -> void:
-	SignalBus.start_game.connect(_on_start_game)
+	SignalBus.emit_signal("start_game") # from start menu
+	SignalBus.try_again.connect(_on_try_again) # after player death
+	
 	# enable for full screen
 	#DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
 
-func _on_start_game() -> void:
+func _on_try_again() -> void:
 	var players: Array = get_tree().get_nodes_in_group("player")
 	if players.size() == 0: # player is dead
 		var player: Player = Player.instantiate()

@@ -1,0 +1,6 @@
+[gd_resource type="Theme" format=3 uid="uid://mb472daskavc"]
+
+[resource]
+default_font_size = 32
+Button/font_sizes/font_size = 32
+Label/font_sizes/font_size = 32

@@ -42,6 +42,7 @@ var explosion_sfx: Array = [
 
 func _ready() -> void:
 	SignalBus.start_game.connect(_on_start_game)
+	SignalBus.try_again.connect(_on_start_game)
 	SignalBus.game_over.connect(_on_game_over)
 	
 	call_deferred("actor_setup") # Make sure to not await during _ready

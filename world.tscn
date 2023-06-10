@@ -10,6 +10,7 @@
 
 [sub_resource type="Environment" id="Environment_1o2i3"]
 background_mode = 3
+tonemap_mode = 3
 adjustment_brightness = 2.0
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_3b8dq"]

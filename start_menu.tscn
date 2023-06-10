@@ -1,0 +1,41 @@
+[gd_scene load_steps=2 format=3 uid="uid://do68yormyjr4l"]
+
+[ext_resource type="Script" path="res://start_menu.gd" id="1_6n1qv"]
+
+[node name="ColorRect" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="StartMenu" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 320
+theme_override_constants/margin_top = 180
+theme_override_constants/margin_right = 320
+theme_override_constants/margin_bottom = 180
+script = ExtResource("1_6n1qv")
+
+[node name="CenterContainer" type="CenterContainer" parent="StartMenu"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StartMenu/CenterContainer"]
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="StartMenu/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Start Game"
+
+[node name="QuitButton" type="Button" parent="StartMenu/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[connection signal="pressed" from="StartMenu/CenterContainer/VBoxContainer/StartButton" to="StartMenu" method="_on_start_button_pressed"]
+[connection signal="pressed" from="StartMenu/CenterContainer/VBoxContainer/QuitButton" to="StartMenu" method="_on_quit_button_pressed"]
