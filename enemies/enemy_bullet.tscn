@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cyctmp0aj6i5l"]
 
-[ext_resource type="Script" path="res://enemy_bullet.gd" id="1_r84c1"]
+[ext_resource type="Script" path="res://enemies/enemy_bullet.gd" id="1_r84c1"]
 [ext_resource type="Texture2D" uid="uid://c3nu68vdnf7se" path="res://assets/Laser Sprites/02.png" id="2_f7mvx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ayxu2"]

@@ -22,3 +22,7 @@ func equip_weapon(weapon_to_equip):
 func fire():
 	if equipped_weapon:
 		equipped_weapon.fire()
+
+func secondary_fire():
+	if equipped_weapon:
+		equipped_weapon.secondary_fire()

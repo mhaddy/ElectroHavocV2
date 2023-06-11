@@ -10,7 +10,7 @@ class_name Player
 @onready var stats: Stats = $Stats
 @onready var collision_shape_2d = $CollisionShape2D
 
-var Death_Animation: PackedScene = preload("res://player_death_animation.tscn")
+var Death_Animation: PackedScene = preload("res://player/player_death_animation.tscn")
 var explosion_sfx: Array = [
 	"res://assets/musicSfx/playerExplosion.wav"
 ]
@@ -36,6 +36,10 @@ func _physics_process(delta) -> void:
 		
 	if Input.is_action_pressed("primary_action"):
 		gun_controller.fire()
+	
+	# TODO:
+	#if Input.is_action_pressed("secondary_action"):
+	#	gun_controller.secondary_fire()
 
 # enemy collides with/damages player
 func _on_area_2d_body_entered(body) -> void:

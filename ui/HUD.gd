@@ -71,7 +71,6 @@ func _on_try_again_button_pressed():
 	SignalBus.emit_signal("try_again")
 	
 func _on_start_game():
-	print('here')
 	# wave updated in spawners.gd
 	Globals.score = 0
 	SignalBus.emit_signal("update_score", 0)

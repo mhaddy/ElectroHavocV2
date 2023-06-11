@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var Player: PackedScene = preload("res://player.tscn")
+@onready var Player: PackedScene = preload("res://player/player.tscn")
 @onready var player_spawn_point: Marker2D = $player/PlayerSpawnPoint
 @onready var world_camera_node_path: NodePath = "/root/world/WorldCamera"
 

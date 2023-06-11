@@ -13,7 +13,7 @@ particles_anim_loop = false
 offsets = PackedFloat32Array(0, 0.524691, 1)
 colors = PackedColorArray(0, 0, 0, 1, 0.919753, 0.919753, 0.919753, 1, 0, 0, 0, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_ibv7t"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_72p6g"]
 gradient = SubResource("Gradient_ury8p")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sut7f"]
@@ -23,7 +23,7 @@ orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
 angle_max = 360.0
 scale_min = 0.6
-color_ramp = SubResource("GradientTexture1D_ibv7t")
+color_ramp = SubResource("GradientTexture1D_72p6g")
 hue_variation_min = -0.15
 hue_variation_max = 0.52
 anim_offset_max = 1.0

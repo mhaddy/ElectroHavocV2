@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://cy3360w1huhbk"]
 
-[ext_resource type="Texture2D" uid="uid://cd5alpr7lvkhe" path="res://assets/tank.png" id="1_3el6y"]
-[ext_resource type="Script" path="res://player.gd" id="1_wt4w1"]
-[ext_resource type="Texture2D" uid="uid://cxaj02b7kmw4j" path="res://assets/light.png" id="3_h0gc7"]
-[ext_resource type="PackedScene" uid="uid://bm6effwt4a5pp" path="res://gun_controller.tscn" id="4_igc43"]
-[ext_resource type="PackedScene" uid="uid://vpbs6vjemmyl" path="res://stats.tscn" id="5_4u1ws"]
+[ext_resource type="Script" path="res://player/player.gd" id="1_qsbr3"]
+[ext_resource type="Texture2D" uid="uid://cd5alpr7lvkhe" path="res://assets/tank.png" id="2_5aj0l"]
+[ext_resource type="Texture2D" uid="uid://cxaj02b7kmw4j" path="res://assets/light.png" id="3_q5vek"]
+[ext_resource type="PackedScene" uid="uid://bm6effwt4a5pp" path="res://gun_controller.tscn" id="4_d4y0g"]
+[ext_resource type="PackedScene" uid="uid://vpbs6vjemmyl" path="res://stats.tscn" id="5_i4alc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_quy2g"]
 size = Vector2(16, 16)
@@ -15,7 +15,7 @@ size = Vector2(16, 16)
 collision_layer = 2
 collision_mask = 5
 safe_margin = 0.1
-script = ExtResource("1_wt4w1")
+script = ExtResource("1_qsbr3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_quy2g")
@@ -23,7 +23,7 @@ shape = SubResource("RectangleShape2D_quy2g")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.972549, 0.941176, 0.533333, 1)
 self_modulate = Color(0.972549, 0.941176, 0.533333, 1)
-texture = ExtResource("1_3el6y")
+texture = ExtResource("2_5aj0l")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 2
@@ -36,15 +36,15 @@ shape = SubResource("RectangleShape2D_n7f4r")
 color = Color(0.121569, 0.25098, 0.231373, 1)
 energy = 2.0
 shadow_enabled = true
-texture = ExtResource("3_h0gc7")
+texture = ExtResource("3_q5vek")
 texture_scale = 2.0
 
 [node name="WeaponMountPoint" type="Marker2D" parent="."]
 position = Vector2(16, 0)
 
-[node name="GunController" parent="." instance=ExtResource("4_igc43")]
+[node name="GunController" parent="." instance=ExtResource("4_d4y0g")]
 
-[node name="Stats" parent="." instance=ExtResource("5_4u1ws")]
+[node name="Stats" parent="." instance=ExtResource("5_i4alc")]
 
 [node name="PlayerCamera" type="RemoteTransform2D" parent="."]
 

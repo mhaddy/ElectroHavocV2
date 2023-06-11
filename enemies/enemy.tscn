@@ -1,10 +1,10 @@
 [gd_scene load_steps=10 format=3 uid="uid://devfqwbwpqxty"]
 
-[ext_resource type="Script" path="res://enemy.gd" id="1_1e2ha"]
-[ext_resource type="PackedScene" uid="uid://vpbs6vjemmyl" path="res://stats.tscn" id="2_3rdj3"]
-[ext_resource type="Texture2D" uid="uid://cxaj02b7kmw4j" path="res://assets/light.png" id="3_q1prw"]
-[ext_resource type="PackedScene" uid="uid://bm6effwt4a5pp" path="res://gun_controller.tscn" id="4_7aj7q"]
-[ext_resource type="PackedScene" uid="uid://dmxrinrv5kgpb" path="res://weapons/enemy_cannon.tscn" id="5_m35n4"]
+[ext_resource type="Script" path="res://enemies/enemy.gd" id="1_n21xo"]
+[ext_resource type="Texture2D" uid="uid://cxaj02b7kmw4j" path="res://assets/light.png" id="2_d4bmo"]
+[ext_resource type="PackedScene" uid="uid://bm6effwt4a5pp" path="res://gun_controller.tscn" id="3_um8r4"]
+[ext_resource type="PackedScene" uid="uid://dmxrinrv5kgpb" path="res://weapons/enemy_cannon.tscn" id="4_2hij4"]
+[ext_resource type="PackedScene" uid="uid://vpbs6vjemmyl" path="res://stats.tscn" id="5_12475"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_glg4v"]
 size = Vector2(12, 12)
@@ -22,7 +22,7 @@ size = Vector2(102, 16)
 collision_layer = 4
 collision_mask = 7
 safe_margin = 2.5
-script = ExtResource("1_1e2ha")
+script = ExtResource("1_n21xo")
 
 [node name="WeaponMountPoint" type="Marker2D" parent="."]
 visible = false
@@ -34,7 +34,7 @@ rotation = 6.28319
 visible = false
 energy = 0.5
 shadow_enabled = true
-texture = ExtResource("3_q1prw")
+texture = ExtResource("2_d4bmo")
 
 [node name="CollisionShapeForWorld" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_glg4v")
@@ -49,7 +49,7 @@ shape = SubResource("RectangleShape2D_4i3o2")
 debug_color = Color(0.890196, 0.309804, 0.239216, 0.419608)
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-modulate = Color(0.415686, 0.133333, 0.196078, 1)
+modulate = Color(0.42, 0.13, 0.2, 1)
 rotation = -1.5708
 polygon = PackedVector2Array(-6, -6, -6, -6, -6, 0, 0, 7, 6, 0, 6, -6)
 
@@ -78,10 +78,10 @@ shape = SubResource("RectangleShape2D_pctlv")
 wait_time = 0.25
 one_shot = true
 
-[node name="GunController" parent="." instance=ExtResource("4_7aj7q")]
-STARTING_WEAPON = ExtResource("5_m35n4")
+[node name="GunController" parent="." instance=ExtResource("3_um8r4")]
+STARTING_WEAPON = ExtResource("4_2hij4")
 
-[node name="Stats" parent="." instance=ExtResource("2_3rdj3")]
+[node name="Stats" parent="." instance=ExtResource("5_12475")]
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="PathUpdateTimer" to="." method="_on_path_update_timer_timeout"]

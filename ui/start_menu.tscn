@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://do68yormyjr4l"]
 
-[ext_resource type="Script" path="res://start_menu.gd" id="1_6n1qv"]
+[ext_resource type="Script" path="res://ui/start_menu.gd" id="1_6n1qv"]
 
 [node name="ColorRect" type="ColorRect"]
 anchors_preset = 15
@@ -30,6 +30,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="StartButton" type="Button" parent="StartMenu/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Start Game"
 

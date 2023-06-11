@@ -31,5 +31,7 @@ func fire() -> void:
 		can_fire = false
 		timer.start()
 
+# TODO: Add secondary_fire()
+
 func _on_timer_timeout() -> void:
 	can_fire = true

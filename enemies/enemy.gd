@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name Enemy
 
-var Death_Animation: PackedScene = preload("res://death_animation.tscn")
+var Death_Animation: PackedScene = preload("res://enemies/death_animation.tscn")
 
 @onready var movement_target_position: Vector2
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
@@ -141,7 +141,7 @@ func wave_modifier() -> void:
 func _on_area_2d_body_entered(body) -> void:
 	if "bullet" in body.name:
 		stats.current_HP -= body.damage
-		print("hit ", stats.current_HP, "/", stats.MAX_HP)
+#		print("hit ", stats.current_HP, "/", stats.MAX_HP)
 
 # enemy dies
 func _on_stats_no_health() -> void:
