@@ -1,8 +1,10 @@
-extends MarginContainer
+extends ColorRect
 
 @onready var start_button: Button = %StartButton
+@onready var logo = $CenterContainer/Logo
 
 func _ready() -> void:
+	Globals.tween_fade_in(logo, 0.5)
 	start_button.grab_focus()
 	
 	# create save file, or load it

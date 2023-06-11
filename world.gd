@@ -16,7 +16,7 @@ func _on_try_again() -> void:
 	if players.size() == 0: # player is dead
 		var player: Player = Player.instantiate()
 		player.global_position = player_spawn_point.global_position
-		get_parent().get_node("world").add_child(player)
+		get_parent().get_node("world/player").add_child(player)
 		
 		var playerCamera: RemoteTransform2D = player.get_node("PlayerCamera")
 		playerCamera.remote_path = world_camera_node_path

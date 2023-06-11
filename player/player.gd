@@ -48,6 +48,7 @@ func _on_area_2d_body_entered(body) -> void:
 #		print("enemy hit me ", stats.current_HP, "/", stats.max_HP, ", ", body.damage)
 
 func _on_stats_no_health():
+	Globals.player_position = global_position
 	print ("game over!")
 	SignalBus.emit_signal("game_over")
 	

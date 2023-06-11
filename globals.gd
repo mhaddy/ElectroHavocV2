@@ -11,6 +11,7 @@ var wave_num: int = 1
 #		print ("new wave ", wave_num)
 var score: int = 0
 var high_score: int
+var player_position: Vector2 # updated on death
 
 var _save = SaveGame.new()
 
@@ -31,6 +32,12 @@ func tween_fade_out(node: Node, fade_out_time: float = 1.0, destroy: bool = true
 		tween.tween_callback(node.queue_free)
 	else:
 		pass
+		
+func tween_fade_in(node: Node, fade_in_time: float = 1.0) -> void:
+	var tween: Tween = get_tree().create_tween().set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_OUT)
+	tween.tween_property(node, "modulate", Color(0, 0, 0, 0), 0)
+	tween.tween_property(node, "modulate", Color(1, 1, 1, 1), fade_in_time)
+	tween.tween_callback(node.show)
 
 # this tween just does the reverse of tween_fade_out because the node is left
 # in an invisible, 0 pixel state after it fades out

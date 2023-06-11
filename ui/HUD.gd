@@ -17,6 +17,7 @@ var finish_game_sfx: Array = [
 
 # TODO:
 #var Finish_Game_Halo: PackedScene = preload("res://halo_effect.tscn")
+var Game_Over_Modal: PackedScene = preload("res://ui/game_over_modal.tscn")
 
 func _ready() -> void:
 	SignalBus.update_score.connect(_on_update_score)
@@ -39,13 +40,18 @@ func show_message(text: String, fade_out: bool = true) -> void:
 	message.show()
 	
 func _on_game_over() -> void:
-	Globals.tween_appear(message)
-	show_message("Game Over!")
+#	Globals.tween_appear(message)
+#	show_message("Game Over!")
 	AudioManager.play_sfx(Globals.random_sfx(gameover_sfx))
 	
+	var game_over_modal = Game_Over_Modal.instantiate()
+	game_over_modal.global_position = Globals.player_position #_get_viewport_center()
+	get_parent().add_child(game_over_modal)
+	Globals.tween_appear(game_over_modal)
+	
 	# Make a one-shot timer and wait for it to finish.
-	await get_tree().create_timer(3.0).timeout
-	Globals.tween_appear(try_again_button)
+#	await get_tree().create_timer(3.0).timeout
+#	Globals.tween_appear(try_again_button)
 
 func _on_update_score(points) -> void:
 	Globals.score += points
@@ -96,3 +102,9 @@ func _on_finish_game() -> void:
 	await get_tree().create_timer(3.0).timeout
 	
 	Globals.tween_appear(try_again_button)
+
+# Using Globals.player_position instead
+#func _get_viewport_center() -> Vector2:
+#	var viewport: Vector2 = DisplayServer.window_get_size()
+#	print(viewport)
+#	return Vector2(viewport.x/2, viewport.y/2)
