@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://ndxrflc4mau8"]
 
-[ext_resource type="Script" path="res://particles_explosion.gd" id="1_bsgp5"]
+[ext_resource type="Script" path="res://projectiles/particles_explosion.gd" id="1_bsgp5"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2ty4w"]
 blend_mode = 1

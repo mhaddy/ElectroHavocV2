@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://crovktkxxkye6"]
 
 [ext_resource type="Script" path="res://weapons/cannon.gd" id="1_ms0uw"]
-[ext_resource type="PackedScene" uid="uid://cg1bbewcgn82" path="res://bullet.tscn" id="2_tflro"]
+[ext_resource type="PackedScene" uid="uid://cg1bbewcgn82" path="res://projectiles/bullet.tscn" id="2_tflro"]
 
 [node name="cannon" type="Node2D"]
 script = ExtResource("1_ms0uw")

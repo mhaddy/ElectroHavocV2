@@ -3,7 +3,7 @@ extends RigidBody2D
 @export var damage: int = 1
 
 # particles
-var Explosion: PackedScene = preload("res://particles_explosion.tscn")
+var Explosion: PackedScene = preload("res://projectiles/particles_explosion.tscn")
 
 # when the bullet enters a body
 func _on_body_entered(body: Node):

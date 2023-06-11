@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://g3bsvfnyap62"]
 
-[ext_resource type="Script" path="res://audio_manager.gd" id="1_vfyof"]
+[ext_resource type="Script" path="res://audio/audio_manager.gd" id="1_vfyof"]
 [ext_resource type="AudioStream" uid="uid://c5xvt1vs6nnpn" path="res://assets/musicSfx/spaceWhales.ogg" id="2_ffg4n"]
 
 [node name="AudioManager" type="Node"]

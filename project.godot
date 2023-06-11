@@ -19,7 +19,7 @@ config/icon="res://ui/icon.svg"
 
 SignalBus="*res://SignalBus.gd"
 Globals="*res://globals.gd"
-AudioManager="*res://audio_manager.tscn"
+AudioManager="*res://audio/audio_manager.tscn"
 LevelTransition="*res://ui/level_transition.tscn"
 
 [display]

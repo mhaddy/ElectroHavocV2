@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dk0odmrx86xqc"]
 
 [ext_resource type="Texture2D" uid="uid://du0k2af0s4dx3" path="res://assets/Flame.png" id="1_1j3eb"]
-[ext_resource type="Script" path="res://particles_explosion.gd" id="1_po7te"]
+[ext_resource type="Script" path="res://projectiles/particles_explosion.gd" id="1_po7te"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2ty4w"]
 blend_mode = 1

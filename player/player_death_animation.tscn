@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://bh6prx6m3c4cr"]
 
-[ext_resource type="Script" path="res://particles_explosion.gd" id="1_63sct"]
+[ext_resource type="Script" path="res://projectiles/particles_explosion.gd" id="1_63sct"]
 [ext_resource type="Texture2D" uid="uid://byisovyrytw6n" path="res://assets/Laser Sprites/40.png" id="1_ghler"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2ty4w"]
