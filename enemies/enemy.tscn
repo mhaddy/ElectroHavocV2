@@ -83,6 +83,7 @@ STARTING_WEAPON = ExtResource("4_2hij4")
 
 [node name="Stats" parent="." instance=ExtResource("5_12475")]
 
+[connection signal="area_shape_entered" from="Area2D" to="." method="_on_area_2d_area_shape_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="PathUpdateTimer" to="." method="_on_path_update_timer_timeout"]
 [connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]

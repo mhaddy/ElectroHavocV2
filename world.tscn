@@ -4,10 +4,10 @@
 [ext_resource type="Script" path="res://world.gd" id="1_kfj4g"]
 [ext_resource type="Shader" path="res://shaders/shader_star_nest.gdshader" id="2_rq472"]
 [ext_resource type="PackedScene" uid="uid://cy3360w1huhbk" path="res://player/player.tscn" id="3_oisre"]
-[ext_resource type="Script" path="res://spawners.gd" id="4_hcpyf"]
+[ext_resource type="Script" path="res://waves/spawners.gd" id="5_5aadn"]
 [ext_resource type="PackedScene" uid="uid://devfqwbwpqxty" path="res://enemies/enemy.tscn" id="6_11v73"]
-[ext_resource type="Script" path="res://wave.gd" id="6_mtac0"]
 [ext_resource type="PackedScene" uid="uid://ce1jr4egm8lvy" path="res://ui/hud.tscn" id="7_qgees"]
+[ext_resource type="Script" path="res://waves/wave.gd" id="7_r84s1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_b0cux"]
 shader = ExtResource("2_rq472")
@@ -148,7 +148,7 @@ layer_1/tile_data = PackedInt32Array(1376258, 0, 0, 1376259, 0, 0, 1376260, 0, 0
 
 [node name="Spawners" type="Node2D" parent="."]
 position = Vector2(571, 80)
-script = ExtResource("4_hcpyf")
+script = ExtResource("5_5aadn")
 ENEMY = ExtResource("6_11v73")
 
 [node name="Timer" type="Timer" parent="Spawners"]
@@ -156,47 +156,47 @@ ENEMY = ExtResource("6_11v73")
 [node name="Waves" type="Node" parent="Spawners"]
 
 [node name="Wave" type="Node" parent="Spawners/Waves"]
-script = ExtResource("6_mtac0")
+script = ExtResource("7_r84s1")
 NUM_ENEMIES = 5
 SEC_BETWEEN_SPAWNS = 1.0
 
 [node name="Wave2" type="Node" parent="Spawners/Waves"]
-script = ExtResource("6_mtac0")
+script = ExtResource("7_r84s1")
 NUM_ENEMIES = 10
 SEC_BETWEEN_SPAWNS = 1.0
 
 [node name="Wave3" type="Node" parent="Spawners/Waves"]
-script = ExtResource("6_mtac0")
+script = ExtResource("7_r84s1")
 NUM_ENEMIES = 20
 SEC_BETWEEN_SPAWNS = 0.75
 
 [node name="Wave4" type="Node" parent="Spawners/Waves"]
-script = ExtResource("6_mtac0")
+script = ExtResource("7_r84s1")
 NUM_ENEMIES = 30
 SEC_BETWEEN_SPAWNS = 0.75
 
 [node name="Wave5" type="Node" parent="Spawners/Waves"]
-script = ExtResource("6_mtac0")
+script = ExtResource("7_r84s1")
 NUM_ENEMIES = 30
 SEC_BETWEEN_SPAWNS = 0.5
 
 [node name="Wave6" type="Node" parent="Spawners/Waves"]
-script = ExtResource("6_mtac0")
+script = ExtResource("7_r84s1")
 NUM_ENEMIES = 40
 SEC_BETWEEN_SPAWNS = 0.5
 
 [node name="Wave7" type="Node" parent="Spawners/Waves"]
-script = ExtResource("6_mtac0")
+script = ExtResource("7_r84s1")
 NUM_ENEMIES = 50
 SEC_BETWEEN_SPAWNS = 0.25
 
 [node name="Wave8" type="Node" parent="Spawners/Waves"]
-script = ExtResource("6_mtac0")
+script = ExtResource("7_r84s1")
 NUM_ENEMIES = 60
 SEC_BETWEEN_SPAWNS = 0.25
 
 [node name="Wave9" type="Node" parent="Spawners/Waves"]
-script = ExtResource("6_mtac0")
+script = ExtResource("7_r84s1")
 NUM_ENEMIES = 75
 SEC_BETWEEN_SPAWNS = 0.1
 

@@ -1,15 +1,18 @@
 extends Node
 
 # TODO: Is there a reason why I'd use setget here?
+
+var game_version: float = 0.8
 var wave_num: int = 1
 #	get:
 #		return wave_num
 #	set(value):
 #		wave_num = value
 #		print ("new wave ", wave_num)
-
 var score: int = 0
-var high_score: int = 0
+var high_score: int
+
+var _save = SaveGame.new()
 
 func tween_pulsate(node: Node) -> void:
 	#TRANS_QUINT, _QUAD, _ELASTIC are cool too
@@ -42,3 +45,18 @@ func tween_appear(node: Node) -> void:
 	
 func random_sfx(sfx: Array):
 	return load(sfx[randi() % sfx.size()])
+
+# load a save file or create it if it doesn't exist
+func create_or_load_save() -> void:
+	if _save.save_exists():
+		_save.load_save_game()
+	else:
+		_save.write_save_game()
+		
+func save_game() -> void:
+	_save.write_save_game()
+
+# save the game one exit
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		save_game()

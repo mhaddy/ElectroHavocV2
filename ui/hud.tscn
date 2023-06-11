@@ -14,7 +14,7 @@ theme_override_font_sizes/font_size = 24
 text = "Score"
 vertical_alignment = 1
 
-[node name="ScoreNum" type="Label" parent="ScoreLabel"]
+[node name="ScoreNum" type="Label" parent="ScoreLabel" groups=["save"]]
 layout_mode = 0
 offset_top = 27.0
 offset_right = 40.0
@@ -35,7 +35,7 @@ text = "High Score"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="HighScoreNum" type="Label" parent="HighScoreLabel"]
+[node name="HighScoreNum" type="Label" parent="HighScoreLabel" groups=["save"]]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0

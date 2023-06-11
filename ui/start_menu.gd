@@ -5,6 +5,9 @@ extends MarginContainer
 func _ready() -> void:
 	start_button.grab_focus()
 	
+	# create save file, or load it
+	Globals.create_or_load_save()
+	
 func _on_start_button_pressed() -> void:
 	# await results in an instant transition; we want the crossfade effect
 	LevelTransition.fade_from_black()

@@ -18,7 +18,7 @@ var finish_game_sfx: Array = [
 # TODO:
 #var Finish_Game_Halo: PackedScene = preload("res://halo_effect.tscn")
 
-func _ready():
+func _ready() -> void:
 	SignalBus.update_score.connect(_on_update_score)
 	SignalBus.update_wave.connect(_on_update_wave)
 	SignalBus.start_game.connect(_on_start_game)
@@ -27,8 +27,9 @@ func _ready():
 	SignalBus.finish_game.connect(_on_finish_game)
 	
 	message_original_position = message.global_position
+	update_high_score(Globals.high_score) # from save game
 	
-func show_message(text: String, fade_out: bool = true):
+func show_message(text: String, fade_out: bool = true) -> void:
 	message.global_position = message_original_position
 	
 	if fade_out:
@@ -37,7 +38,7 @@ func show_message(text: String, fade_out: bool = true):
 	message.text = text
 	message.show()
 	
-func _on_game_over():
+func _on_game_over() -> void:
 	Globals.tween_appear(message)
 	show_message("Game Over!")
 	AudioManager.play_sfx(Globals.random_sfx(gameover_sfx))
@@ -46,7 +47,7 @@ func _on_game_over():
 	await get_tree().create_timer(3.0).timeout
 	Globals.tween_appear(try_again_button)
 
-func _on_update_score(points):
+func _on_update_score(points) -> void:
 	Globals.score += points
 	score_num.text = str(Globals.score)
 		
@@ -56,27 +57,31 @@ func _on_update_score(points):
 	# TODO: Display this in a message queue bottom left corner of screen
 	# include combos and other modifier info
 	if Globals.score > Globals.high_score:
-		Globals.high_score = Globals.score
-		high_score_num.text = str(Globals.high_score)
-	
-func _on_update_wave(wave_num):
+		update_high_score(Globals.score)
+
+# also called when loading saved games
+func update_high_score(points) -> void:
+	Globals.high_score = points
+	high_score_num.text = str(Globals.high_score)
+
+func _on_update_wave(wave_num) -> void:
 	Globals.tween_pulsate(wave_label)
 	wave_label.text = "Wave "+str(wave_num)
 
-func _on_message_timer_timeout():
+func _on_message_timer_timeout() -> void:
 	Globals.tween_fade_out(message, 0.5, false)
 
-func _on_try_again_button_pressed():
+func _on_try_again_button_pressed() -> void:
 	try_again_button.hide()
 	SignalBus.emit_signal("try_again")
 	
-func _on_start_game():
+func _on_start_game() -> void:
 	# wave updated in spawners.gd
 	Globals.score = 0
 	SignalBus.emit_signal("update_score", 0)
 	show_message("Get Ready")
 
-func _on_finish_game():
+func _on_finish_game() -> void:
 	AudioManager.play_sfx(Globals.random_sfx(finish_game_sfx))
 	
 	Globals.tween_appear(message)

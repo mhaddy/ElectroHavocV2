@@ -32,6 +32,7 @@ var explosion_sfx: Array = [
 	"res://assets/musicSfx/Explosion_v3_variation_02_wav.wav",
 	"res://assets/musicSfx/Explosion_v3_wav.wav"
 ]
+var splash_damage: int = 1 # TODO: vary by wave
 
 # basic guidance: https://docs.godotengine.org/en/stable/tutorials/navigation/navigation_introduction_2d.html
 #
@@ -104,8 +105,8 @@ func identify_player() -> CharacterBody2D:
 	var first_player: CharacterBody2D
 	var players: Array = get_tree().get_nodes_in_group("player")
 	
-	for player in players:
-		first_player = player
+	for alive_player in players:
+		first_player = alive_player
 		break
 	
 	return first_player
@@ -147,8 +148,10 @@ func _on_area_2d_body_entered(body) -> void:
 func _on_stats_no_health() -> void:
 	var explosion = Death_Animation.instantiate()
 	explosion.position = get_global_position()
-	get_tree().get_root().add_child(explosion)
+	# get_tree().get_root() -- I don't think it makes a difference which is used
+	get_parent().call_deferred("add_child", explosion)
 	queue_free()
+#	call_deferred('free')
 	
 	AudioManager.play_sfx(Globals.random_sfx(explosion_sfx))
 	
@@ -178,3 +181,9 @@ func _on_start_game() -> void:
 func _on_game_over() -> void:
 	player_dead = true
 	self_destruct()
+
+# TODO: instance stats on death_animation scene
+# use stats.DAMAGE in node, then use area.damage here
+func _on_area_2d_area_shape_entered(_area_rid, area, _area_shape_index, _local_shape_index):
+	if area.is_in_group("splash_damage"):
+		stats.current_HP -= splash_damage
