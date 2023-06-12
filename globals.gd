@@ -34,10 +34,10 @@ func tween_fade_out(node: Node, fade_out_time: float = 1.0, destroy: bool = true
 		pass
 		
 func tween_fade_in(node: Node, fade_in_time: float = 1.0) -> void:
-	var tween: Tween = get_tree().create_tween().set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_OUT)
+	var tween: Tween = get_tree().create_tween().set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN)
 	tween.tween_property(node, "modulate", Color(0, 0, 0, 0), 0)
 	tween.tween_property(node, "modulate", Color(1, 1, 1, 1), fade_in_time)
-	tween.tween_callback(node.show)
+#	tween.tween_callback(node.show)
 
 # this tween just does the reverse of tween_fade_out because the node is left
 # in an invisible, 0 pixel state after it fades out

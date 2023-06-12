@@ -31,7 +31,7 @@ color_ramp = SubResource("GradientTexture1D_q7xw3")
 
 [node name="fire" type="GPUParticles2D"]
 material = SubResource("CanvasItemMaterial_2ty4w")
-amount = 16
+amount = 32
 process_material = SubResource("ParticleProcessMaterial_dgngc")
 texture = ExtResource("1_1j3eb")
 explosiveness = 0.1
