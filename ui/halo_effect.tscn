@@ -22,32 +22,16 @@ gravity = Vector3(0, 0, 0)
 orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
 angle_max = 360.0
-scale_min = 0.6
+scale_min = 3.0
+scale_max = 4.0
 color_ramp = SubResource("GradientTexture1D_72p6g")
 hue_variation_min = -0.15
 hue_variation_max = 0.52
 anim_offset_max = 1.0
 
-[node name="MarginContainer" type="MarginContainer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 480
-theme_override_constants/margin_top = 180
-theme_override_constants/margin_right = 480
-theme_override_constants/margin_bottom = 180
-
-[node name="CenterContainer" type="CenterContainer" parent="."]
-layout_mode = 2
-
-[node name="HaloEffect" type="GPUParticles2D" parent="CenterContainer"]
-visible = false
+[node name="HaloEffect" type="GPUParticles2D"]
 material = SubResource("CanvasItemMaterial_24g7d")
 process_material = SubResource("ParticleProcessMaterial_sut7f")
 texture = ExtResource("1_584y8")
+visibility_rect = Rect2(-500, -250, 1000, 500)
 local_coords = true
-
-[node name="ColorRect" type="ColorRect" parent="CenterContainer"]
-layout_mode = 2

@@ -15,9 +15,8 @@ var finish_game_sfx: Array = [
 	"res://assets/musicSfx/finishGame.mp3"
 ]
 
-# TODO:
-#var Finish_Game_Halo: PackedScene = preload("res://halo_effect.tscn")
 var Game_Over_Modal: PackedScene = preload("res://ui/game_over_modal.tscn")
+var Finish_Game_Modal: PackedScene = preload("res://ui/finish_game_modal.tscn")
 
 func _ready() -> void:
 	SignalBus.update_score.connect(_on_update_score)
@@ -40,18 +39,12 @@ func show_message(text: String, fade_out: bool = true) -> void:
 	message.show()
 	
 func _on_game_over() -> void:
-#	Globals.tween_appear(message)
-#	show_message("Game Over!")
 	AudioManager.play_sfx(Globals.random_sfx(gameover_sfx))
 	
 	var game_over_modal = Game_Over_Modal.instantiate()
-	game_over_modal.global_position = Globals.player_position #_get_viewport_center()
+	game_over_modal.global_position = Globals.player_position
 	get_parent().add_child(game_over_modal)
 	Globals.tween_appear(game_over_modal)
-	
-	# Make a one-shot timer and wait for it to finish.
-#	await get_tree().create_timer(3.0).timeout
-#	Globals.tween_appear(try_again_button)
 
 func _on_update_score(points) -> void:
 	Globals.score += points
@@ -90,18 +83,10 @@ func _on_start_game() -> void:
 func _on_finish_game() -> void:
 	AudioManager.play_sfx(Globals.random_sfx(finish_game_sfx))
 	
-	Globals.tween_appear(message)
-	show_message("Complete!", false)
-
-	# TODO:
-	# create a high score/level complete/fan fare scene
-#	var halo = Finish_Game_Halo.instantiate()
-#	halo.position = message.get_global_position()
-#	get_tree().get_root().add_child(halo)
-	
-	await get_tree().create_timer(3.0).timeout
-	
-	Globals.tween_appear(try_again_button)
+	var finish_game_modal = Finish_Game_Modal.instantiate()
+	finish_game_modal.global_position = Globals.player_position
+	get_parent().add_child(finish_game_modal)
+	Globals.tween_appear(finish_game_modal)
 
 # Using Globals.player_position instead
 #func _get_viewport_center() -> Vector2:
