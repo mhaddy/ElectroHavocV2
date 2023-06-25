@@ -13,6 +13,10 @@ class_name Player
 @onready var invincibility_timer = $InvincibilityTimer
 @onready var blink_animation_player = $BlinkAnimationPlayer
 
+enum power_up {
+	SHIELD
+}
+
 var Death_Animation: PackedScene = preload("res://player/player_death_animation.tscn")
 var explosion_sfx: Array = [
 	"res://assets/musicSfx/playerExplosion.wav"
@@ -45,15 +49,28 @@ func _physics_process(delta) -> void:
 	#if Input.is_action_pressed("secondary_action"):
 	#	gun_controller.secondary_fire()
 
+func apply_power_up(type: power_up, duration: float) -> void:
+	if type == power_up.SHIELD:
+		invincibility = true
+		# allows for multiple shield power-ups
+		invincibility_timer.start(duration + invincibility_timer.time_left)
+		print("hre")
+		var EFFECT: PackedScene = load("res://powerups/shield_effect.tscn")
+		var Effect = EFFECT.instantiate()
+		Effect.position = weapon_mount_point.global_position
+		get_parent().call_deferred("add_child", Effect)
+		
+	else: 
+		print("Unknown power-up")
+
 # enemy collides with/damages player
 func _on_area_2d_body_entered(body) -> void:
 	if "enemy" in body.name:
 		if not invincibility:
 			stats.current_HP -= body.damage
 #			print("enemy hit me ", stats.current_HP, "/", stats.MAX_HP, ", ", body.damage)
-			invincibility = true
-			invincibility_timer.start()
 			blink_animation_player.play("Start")
+			apply_power_up(power_up.SHIELD, INVINCIBILITY_DELAY)
 
 func _on_stats_no_health():
 	Globals.player_position = global_position

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b708hq5w0hax6"]
+[gd_scene load_steps=18 format=3 uid="uid://b708hq5w0hax6"]
 
 [ext_resource type="Texture2D" uid="uid://cd5alpr7lvkhe" path="res://assets/tank.png" id="1_7dxvr"]
 [ext_resource type="Script" path="res://world.gd" id="1_kfj4g"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://devfqwbwpqxty" path="res://enemies/enemy.tscn" id="6_11v73"]
 [ext_resource type="PackedScene" uid="uid://ce1jr4egm8lvy" path="res://ui/hud.tscn" id="7_qgees"]
 [ext_resource type="Script" path="res://waves/wave.gd" id="7_r84s1"]
+[ext_resource type="PackedScene" uid="uid://t08th0nyj66u" path="res://powerups/shield_power_up.tscn" id="9_a15u2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_b0cux"]
 shader = ExtResource("2_rq472")
@@ -234,4 +235,8 @@ position = Vector2(160, 136)
 
 [node name="HUD" parent="." instance=ExtResource("7_qgees")]
 
+[node name="ShieldPowerUp" parent="." instance=ExtResource("9_a15u2")]
+position = Vector2(352, 262)
+
 [connection signal="timeout" from="Spawners/Timer" to="Spawners" method="_on_timer_timeout"]
+[connection signal="area_entered" from="ShieldPowerUp" to="ShieldPowerUp" method="_on_area_entered" flags=18]
