@@ -4,20 +4,24 @@ class_name Player
 @export var ACCELERATION: float = 500
 @export var MAX_SPEED: float = 275
 @export var FRICTION: float = 500
+@export var INVINCIBILITY_DELAY: float = 0.5
 
 @onready var weapon_mount_point: Marker2D = $WeaponMountPoint
 @onready var gun_controller: Node = $GunController
 @onready var stats: Stats = $Stats
 @onready var collision_shape_2d = $CollisionShape2D
+@onready var invincibility_timer = $InvincibilityTimer
+@onready var blink_animation_player = $BlinkAnimationPlayer
 
 var Death_Animation: PackedScene = preload("res://player/player_death_animation.tscn")
 var explosion_sfx: Array = [
 	"res://assets/musicSfx/playerExplosion.wav"
 ]
 var world_camera: Camera2D
+var invincibility: bool = false
 
 func _ready() -> void:
-	pass
+	invincibility_timer.wait_time = INVINCIBILITY_DELAY
 
 func _physics_process(delta) -> void:
 	var input_vector = Vector2.ZERO
@@ -44,8 +48,12 @@ func _physics_process(delta) -> void:
 # enemy collides with/damages player
 func _on_area_2d_body_entered(body) -> void:
 	if "enemy" in body.name:
-		stats.current_HP -= body.damage
-#		print("enemy hit me ", stats.current_HP, "/", stats.max_HP, ", ", body.damage)
+		if not invincibility:
+			stats.current_HP -= body.damage
+#			print("enemy hit me ", stats.current_HP, "/", stats.MAX_HP, ", ", body.damage)
+			invincibility = true
+			invincibility_timer.start()
+			blink_animation_player.play("Start")
 
 func _on_stats_no_health():
 	Globals.player_position = global_position
@@ -60,3 +68,7 @@ func _on_stats_no_health():
 	
 	AudioManager.play_sfx(Globals.random_sfx(explosion_sfx))
 
+
+func _on_invincibility_timer_timeout():
+	invincibility = false
+	blink_animation_player.play("Stop")
