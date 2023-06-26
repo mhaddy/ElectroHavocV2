@@ -9,7 +9,7 @@ radius = 31.9531
 
 [node name="ShieldPowerUp" instance=ExtResource("1_a147o")]
 script = ExtResource("2_bw3bf")
-power_up_time = 3.0
+power_up_time = 5.0
 
 [node name="CollisionShape2D" parent="." index="0"]
 position = Vector2(0, 2)

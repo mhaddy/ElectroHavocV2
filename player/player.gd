@@ -12,9 +12,11 @@ class_name Player
 @onready var collision_shape_2d = $CollisionShape2D
 @onready var invincibility_timer = $InvincibilityTimer
 @onready var blink_animation_player = $BlinkAnimationPlayer
+@onready var shield_effect = $shieldEffect
 
 enum power_up {
-	SHIELD
+	SHIELD,
+	RAPID_FIRE
 }
 
 var Death_Animation: PackedScene = preload("res://player/player_death_animation.tscn")
@@ -54,11 +56,8 @@ func apply_power_up(type: power_up, duration: float) -> void:
 		invincibility = true
 		# allows for multiple shield power-ups
 		invincibility_timer.start(duration + invincibility_timer.time_left)
-		print("hre")
-		var EFFECT: PackedScene = load("res://powerups/shield_effect.tscn")
-		var Effect = EFFECT.instantiate()
-		Effect.position = weapon_mount_point.global_position
-		get_parent().call_deferred("add_child", Effect)
+		shield_effect.visible = true
+		shield_effect.self_modulate.a = 0.5
 		
 	else: 
 		print("Unknown power-up")
@@ -88,4 +87,5 @@ func _on_stats_no_health():
 
 func _on_invincibility_timer_timeout():
 	invincibility = false
+	shield_effect.visible = false
 	blink_animation_player.play("Stop")

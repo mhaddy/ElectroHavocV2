@@ -40,3 +40,4 @@ material = SubResource("CanvasItemMaterial_ckjtg")
 amount = 4
 process_material = SubResource("ParticleProcessMaterial_0ho2l")
 texture = ExtResource("1_31pix")
+local_coords = true
