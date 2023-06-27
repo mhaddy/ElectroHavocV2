@@ -66,7 +66,7 @@ func apply_power_up(type: power_up, duration: float) -> void:
 func _on_area_2d_body_entered(body) -> void:
 	if "enemy" in body.name:
 		if not invincibility:
-			stats.current_HP -= body.damage
+			#stats.current_HP -= body.damage
 #			print("enemy hit me ", stats.current_HP, "/", stats.MAX_HP, ", ", body.damage)
 			blink_animation_player.play("Start")
 			apply_power_up(power_up.SHIELD, INVINCIBILITY_DELAY)
@@ -83,7 +83,6 @@ func _on_stats_no_health():
 	queue_free()
 	
 	AudioManager.play_sfx(Globals.random_sfx(explosion_sfx))
-
 
 func _on_invincibility_timer_timeout():
 	invincibility = false

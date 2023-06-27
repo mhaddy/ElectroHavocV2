@@ -1,0 +1,121 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0sbcbuwbs45h"]
+
+[ext_resource type="Script" path="res://waves/spawners.gd" id="1_qiggr"]
+[ext_resource type="PackedScene" uid="uid://devfqwbwpqxty" path="res://enemies/enemy.tscn" id="2_qn3du"]
+[ext_resource type="Script" path="res://waves/wave.gd" id="3_tye04"]
+
+[node name="Spawners" type="Node2D"]
+position = Vector2(571, 80)
+script = ExtResource("1_qiggr")
+ENEMY = ExtResource("2_qn3du")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Waves" type="Node" parent="."]
+
+[node name="Wave" type="Node" parent="Waves"]
+script = ExtResource("3_tye04")
+NUM_ENEMIES = 5
+SEC_BETWEEN_SPAWNS = 1.0
+MAX_POWER_UP_SPAWN_TIME = 7.0
+MAX_POWER_UPS = 0
+
+[node name="Wave2" type="Node" parent="Waves"]
+script = ExtResource("3_tye04")
+NUM_ENEMIES = 10
+SEC_BETWEEN_SPAWNS = 1.0
+MAX_POWER_UP_SPAWN_TIME = 7.0
+
+[node name="Wave3" type="Node" parent="Waves"]
+script = ExtResource("3_tye04")
+NUM_ENEMIES = 20
+SEC_BETWEEN_SPAWNS = 0.75
+MIN_POWER_UP_SPAWN_TIME = 4.0
+MAX_POWER_UP_SPAWN_TIME = 6.0
+MAX_POWER_UPS = 2
+
+[node name="Wave4" type="Node" parent="Waves"]
+script = ExtResource("3_tye04")
+NUM_ENEMIES = 30
+SEC_BETWEEN_SPAWNS = 0.75
+MIN_POWER_UP_SPAWN_TIME = 4.0
+MAX_POWER_UP_SPAWN_TIME = 6.0
+MAX_POWER_UPS = 2
+
+[node name="Wave5" type="Node" parent="Waves"]
+script = ExtResource("3_tye04")
+NUM_ENEMIES = 30
+SEC_BETWEEN_SPAWNS = 0.5
+MIN_POWER_UP_SPAWN_TIME = 3.0
+MAX_POWER_UP_SPAWN_TIME = 5.0
+MAX_POWER_UPS = 3
+
+[node name="Wave6" type="Node" parent="Waves"]
+script = ExtResource("3_tye04")
+NUM_ENEMIES = 40
+SEC_BETWEEN_SPAWNS = 0.5
+MIN_POWER_UP_SPAWN_TIME = 3.0
+MAX_POWER_UP_SPAWN_TIME = 5.0
+MAX_POWER_UPS = 3
+
+[node name="Wave7" type="Node" parent="Waves"]
+script = ExtResource("3_tye04")
+NUM_ENEMIES = 50
+SEC_BETWEEN_SPAWNS = 0.25
+MIN_POWER_UP_SPAWN_TIME = 2.0
+MAX_POWER_UP_SPAWN_TIME = 4.0
+MAX_POWER_UPS = 4
+
+[node name="Wave8" type="Node" parent="Waves"]
+script = ExtResource("3_tye04")
+NUM_ENEMIES = 60
+SEC_BETWEEN_SPAWNS = 0.25
+MIN_POWER_UP_SPAWN_TIME = 2.0
+MAX_POWER_UP_SPAWN_TIME = 4.0
+MAX_POWER_UPS = 4
+
+[node name="Wave9" type="Node" parent="Waves"]
+script = ExtResource("3_tye04")
+NUM_ENEMIES = 75
+SEC_BETWEEN_SPAWNS = 0.1
+MIN_POWER_UP_SPAWN_TIME = 2.0
+MAX_POWER_UP_SPAWN_TIME = 4.0
+MAX_POWER_UPS = 5
+
+[node name="SpawnPoints" type="Node" parent="."]
+
+[node name="SpawnPointN" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(571, 79)
+
+[node name="SpawnPointNE" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(1176, 96)
+
+[node name="SpawnPointE" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(1117, 340)
+
+[node name="SpawnPointCR" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(832, 336)
+
+[node name="SpawnPointCL" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(512, 344)
+
+[node name="SpawnPointSE" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(1184, 640)
+
+[node name="SpawnPointS" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(656, 640)
+
+[node name="SpawnPointSW" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(104, 640)
+
+[node name="SpawnPointW" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(85, 377)
+
+[node name="SpawnPointNW" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(160, 136)
+
+[node name="PowerUpSpawnTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="PowerUpSpawnTimer" to="." method="_on_power_up_spawn_timer_timeout"]
