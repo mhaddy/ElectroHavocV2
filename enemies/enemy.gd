@@ -147,7 +147,7 @@ func _on_area_2d_body_entered(body) -> void:
 # enemy dies
 func _on_stats_no_health() -> void:
 	var explosion = Death_Animation.instantiate()
-	explosion.position = get_global_position()
+	explosion.global_position = get_global_position()
 	# get_tree().get_root() -- I don't think it makes a difference which is used
 	get_parent().call_deferred("add_child", explosion)
 	queue_free()

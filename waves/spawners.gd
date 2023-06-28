@@ -79,8 +79,9 @@ func spawn_power_ups(current_wave_index: int) -> void:
 	var spawn_point: int = pick_spawn_point()
 	var power_up_preload: PackedScene = all_power_ups[randi() % all_power_ups.size()]
 	var power_up: power_ups = power_up_preload.instantiate()
-	power_up.position = all_spawn_points[spawn_point].global_position
-	get_parent().add_child(power_up)
+	
+	add_child(power_up)
+	power_up.global_position = all_spawn_points[spawn_point].global_position
 	
 	power_ups_spawned_this_wave += 1
 	
@@ -88,11 +89,12 @@ func _on_no_health() -> void:
 	enemies_killed_this_wave += 1
 
 func _on_timer_timeout() -> void:
+	print(enemies_killed_this_wave, " / ", enemies_remaining_to_spawn, " / ", current_wave.NUM_ENEMIES)
 	if not player_dead:
 		if enemies_remaining_to_spawn:
 			spawn()
 		else:
-			if enemies_killed_this_wave == current_wave.NUM_ENEMIES:
+			if enemies_killed_this_wave >= current_wave.NUM_ENEMIES:
 				start_next_wave()
 
 func _on_start_game() -> void:

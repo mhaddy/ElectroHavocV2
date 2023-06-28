@@ -62,7 +62,7 @@ radius = 16.0
 max_neighbors = 20
 
 [node name="PathUpdateTimer" type="Timer" parent="."]
-wait_time = 0.25
+wait_time = 0.75
 autostart = true
 
 [node name="AttackRange" type="Area2D" parent="."]
