@@ -33,6 +33,8 @@ var explosion_sfx: Array = [
 	"res://assets/musicSfx/Explosion_v3_wav.wav"
 ]
 var splash_damage: int = 1 # TODO: vary by wave
+var can_splash_damage: bool = true
+var splash_damage_delay: float = 0.25
 
 # basic guidance: https://docs.godotengine.org/en/stable/tutorials/navigation/navigation_introduction_2d.html
 #
@@ -186,4 +188,10 @@ func _on_game_over() -> void:
 # use stats.DAMAGE in node, then use area.damage here
 func _on_area_2d_area_shape_entered(_area_rid, area, _area_shape_index, _local_shape_index):
 	if area.is_in_group("splash_damage"):
-		stats.current_HP -= splash_damage
+		if can_splash_damage:
+			stats.current_HP -= splash_damage
+			
+			# limit damage applied by enemy explosion
+			can_splash_damage = false
+			await get_tree().create_timer(splash_damage_delay).timeout
+			can_splash_damage = true
