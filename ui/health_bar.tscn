@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://ca8iwb8kltdxr"]
+
+[ext_resource type="Shader" path="res://player/blackColor.gdshader" id="1_siyy0"]
+[ext_resource type="Texture2D" uid="uid://cd5alpr7lvkhe" path="res://assets/tank.png" id="2_vii3k"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6titx"]
+shader = ExtResource("1_siyy0")
+shader_parameter/active = false
+
+[node name="HealthBar" type="Sprite2D"]
+modulate = Color(0.972549, 0.941176, 0.533333, 1)
+self_modulate = Color(0.972549, 0.941176, 0.533333, 0.529412)
+material = SubResource("ShaderMaterial_6titx")
+position = Vector2(18, 13)
+texture = ExtResource("2_vii3k")

@@ -28,6 +28,7 @@ var invincibility: bool = false
 
 func _ready() -> void:
 	invincibility_timer.wait_time = INVINCIBILITY_DELAY
+	Globals.player_hud_health = stats.MAX_HP
 
 func _physics_process(delta) -> void:
 	var input_vector = Vector2.ZERO
@@ -56,6 +57,9 @@ func apply_power_up(type: power_up, duration: float) -> void:
 		invincibility = true
 		# allows for multiple shield power-ups
 		invincibility_timer.start(duration + invincibility_timer.time_left)
+		# don't send message if just flashing shields upon damage by enemy
+		if duration > 0.5:
+			SignalBus.emit_signal("chat_queue", "> Shield power-up for "+str(invincibility_timer.time_left)+"s")
 		shield_effect.visible = true
 		shield_effect.self_modulate.a = 0.5
 		
@@ -66,9 +70,11 @@ func apply_power_up(type: power_up, duration: float) -> void:
 func _on_area_2d_body_entered(body) -> void:
 	if "enemy" in body.name:
 		if not invincibility:
-			#stats.current_HP -= body.damage
-#			print("enemy hit me ", stats.current_HP, "/", stats.MAX_HP, ", ", body.damage)
+			stats.current_HP -= body.damage
+			SignalBus.emit_signal("update_health", -body.damage)
+			#print("enemy hit me ", stats.current_HP, "/", stats.MAX_HP, ", ", body.damage)
 			blink_animation_player.play("Start")
+			# this is just to show the shield is taking damage
 			apply_power_up(power_up.SHIELD, INVINCIBILITY_DELAY)
 
 func _on_stats_no_health():

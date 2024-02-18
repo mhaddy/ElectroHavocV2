@@ -12,6 +12,7 @@ var wave_num: int = 1
 var score: int = 0
 var high_score: int
 var player_position: Vector2 # updated on death
+var player_hud_health: int
 
 var _save = SaveGame.new()
 

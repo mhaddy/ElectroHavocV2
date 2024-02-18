@@ -39,6 +39,7 @@ func start_next_wave() -> void:
 	if current_wave_index < all_waves.size():
 		Globals.wave_num = current_wave_index+1 # visual display
 		SignalBus.emit_signal("update_wave", Globals.wave_num)
+		SignalBus.emit_signal("chat_queue", "> Prepare for Wave "+str(Globals.wave_num))
 		
 		current_wave = all_waves[current_wave_index]
 		
@@ -89,7 +90,7 @@ func _on_no_health() -> void:
 	enemies_killed_this_wave += 1
 
 func _on_timer_timeout() -> void:
-	print(enemies_killed_this_wave, " / ", enemies_remaining_to_spawn, " / ", current_wave.NUM_ENEMIES)
+	#print(enemies_killed_this_wave, " / ", enemies_remaining_to_spawn, " / ", current_wave.NUM_ENEMIES)
 	if not player_dead:
 		if enemies_remaining_to_spawn:
 			spawn()

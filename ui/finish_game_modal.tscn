@@ -9,9 +9,7 @@
 [node name="FinishGameModal" instance=ExtResource("1_75cte")]
 script = ExtResource("2_v6cx0")
 
-[node name="HaloEffect" parent="." index="0" instance=ExtResource("2_p7ds4")]
-
-[node name="Panel" parent="." index="1"]
+[node name="Panel" parent="." index="0"]
 offset_left = -164.0
 offset_top = -160.0
 offset_right = 164.0
@@ -90,5 +88,7 @@ theme_override_styles/hover = ExtResource("4_o7wi3")
 theme_override_styles/pressed = ExtResource("3_q4mxi")
 theme_override_styles/focus = ExtResource("3_q4mxi")
 text = "Try Again"
+
+[node name="HaloEffect" parent="." index="1" instance=ExtResource("2_p7ds4")]
 
 [connection signal="pressed" from="Panel/TryAgainButton" to="." method="_on_try_again_button_pressed"]

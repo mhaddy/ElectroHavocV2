@@ -10,6 +10,7 @@ var Death_Animation: PackedScene = preload("res://enemies/death_animation.tscn")
 @onready var gun_controller: Node = $GunController
 @onready var polygon_2d = $Polygon2D
 @onready var attack_light: PointLight2D = $AttackLight
+@onready var points_label = $PointsLabel
 
 enum state {
 	SEEKING,
@@ -35,6 +36,8 @@ var explosion_sfx: Array = [
 var splash_damage: int = 1 # TODO: vary by wave
 var can_splash_damage: bool = true
 var splash_damage_delay: float = 0.25
+var splash_damage_points: int = 2
+var points: int = 1
 
 # basic guidance: https://docs.godotengine.org/en/stable/tutorials/navigation/navigation_introduction_2d.html
 #
@@ -54,6 +57,7 @@ func _ready() -> void:
 	randomize() # for enemy colors
 	
 	damage = stats.DAMAGE
+	points = stats.POINTS
 	wave_modifier()
 	
 func _physics_process(_delta) -> void:
@@ -158,8 +162,7 @@ func _on_stats_no_health() -> void:
 	AudioManager.play_sfx(Globals.random_sfx(explosion_sfx))
 	
 	if not player_dead:
-		SignalBus.emit_signal("update_score", 1)
-
+		SignalBus.emit_signal("update_score", points)
 # TODO: change to raycast?
 func _on_attack_range_body_entered(_body) -> void:
 	pass
@@ -190,6 +193,9 @@ func _on_area_2d_area_shape_entered(_area_rid, area, _area_shape_index, _local_s
 	if area.is_in_group("splash_damage"):
 		if can_splash_damage:
 			stats.current_HP -= splash_damage
+			
+			SignalBus.emit_signal("update_score", splash_damage_points)
+			SignalBus.emit_signal("chat_queue", "Splash damage bonus!")
 			
 			# limit damage applied by enemy explosion
 			can_splash_damage = false

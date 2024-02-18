@@ -16,6 +16,7 @@ shader = ExtResource("2_xkfg0")
 shader_parameter/active = false
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n7f4r"]
+size = Vector2(24, 24)
 
 [sub_resource type="Animation" id="Animation_c0itb"]
 length = 0.001
@@ -107,7 +108,8 @@ position = Vector2(16, 0)
 [node name="GunController" parent="." instance=ExtResource("4_d4y0g")]
 
 [node name="Stats" parent="." instance=ExtResource("5_i4alc")]
-MAX_HP = 10
+MAX_HP = 4
+POINTS = 1
 
 [node name="PlayerCamera" type="RemoteTransform2D" parent="."]
 

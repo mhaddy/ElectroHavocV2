@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://vpbs6vjemmyl" path="res://stats.tscn" id="5_12475"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_glg4v"]
-size = Vector2(12, 12)
+size = Vector2(16, 14)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4i3o2"]
 size = Vector2(17, 16)
@@ -23,6 +23,17 @@ collision_layer = 4
 collision_mask = 7
 safe_margin = 2.5
 script = ExtResource("1_n21xo")
+
+[node name="PointsLabel" type="Label" parent="."]
+visible = false
+z_index = 100
+offset_left = -5.0
+offset_top = -7.0
+offset_right = 3.0
+offset_bottom = 6.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "1"
 
 [node name="WeaponMountPoint" type="Marker2D" parent="."]
 visible = false
