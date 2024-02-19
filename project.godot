@@ -11,9 +11,14 @@ config_version=5
 [application]
 
 config/name="Electro Havoc"
+config/description="Survive the Electric Storm: Electro Havoc - Unleash Chain Reactions in this Intense Top-Down Shooter"
+config/version="1"
 run/main_scene="res://ui/start_menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-config/icon="res://ui/icon.svg"
+boot_splash/bg_color=Color(0.0392157, 0, 0.0901961, 1)
+boot_splash/image="res://assets/electroHavocSplash.png"
+config/icon="res://assets/electroHavocSplash.png"
+config/windows_native_icon="res://assets/electroHavocSplash.ico"
 
 [autoload]
 

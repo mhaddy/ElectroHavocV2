@@ -112,6 +112,7 @@ offset_bottom = 711.0
 
 [node name="ChatMessagesLabel" type="RichTextLabel" parent="ChatQueue"]
 self_modulate = Color(1, 1, 1, 0.803922)
+layout_mode = 0
 offset_left = 6.0
 offset_top = 6.0
 offset_right = 296.0
@@ -132,6 +133,7 @@ vertical_alignment = 1
 
 [node name="HealthBackground" type="Panel" parent="HealthLabel"]
 self_modulate = Color(1, 1, 1, 0.278431)
+layout_mode = 0
 offset_left = -16.0
 offset_top = 34.0
 offset_right = 97.0
