@@ -1,0 +1,102 @@
+[gd_scene load_steps=10 format=3 uid="uid://devfqwbwpqxty"]
+
+[ext_resource type="Script" path="res://enemies/enemy.gd" id="1_n21xo"]
+[ext_resource type="Texture2D" uid="uid://cxaj02b7kmw4j" path="res://assets/light.png" id="2_d4bmo"]
+[ext_resource type="PackedScene" uid="uid://bm6effwt4a5pp" path="res://gun_controller.tscn" id="3_um8r4"]
+[ext_resource type="PackedScene" uid="uid://dmxrinrv5kgpb" path="res://weapons/enemy_cannon.tscn" id="4_2hij4"]
+[ext_resource type="PackedScene" uid="uid://vpbs6vjemmyl" path="res://stats.tscn" id="5_12475"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_glg4v"]
+size = Vector2(16, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4i3o2"]
+size = Vector2(17, 16)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_wucat"]
+polygon = PackedVector2Array(-4.99998, -5.00002, -5, -1.81e-05, -2.17199e-05, 6, 5, 1.81e-05, 5.00002, -4.99998)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pctlv"]
+size = Vector2(102, 16)
+
+[node name="enemy" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 4
+collision_mask = 7
+safe_margin = 2.5
+script = ExtResource("1_n21xo")
+
+[node name="PointsLabel" type="Label" parent="."]
+visible = false
+z_index = 100
+offset_left = -5.0
+offset_top = -7.0
+offset_right = 3.0
+offset_bottom = 6.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "1"
+
+[node name="WeaponMountPoint" type="Marker2D" parent="."]
+visible = false
+y_sort_enabled = true
+position = Vector2(9, 0)
+rotation = 6.28319
+
+[node name="AttackLight" type="PointLight2D" parent="."]
+visible = false
+energy = 0.5
+shadow_enabled = true
+texture = ExtResource("2_d4bmo")
+
+[node name="CollisionShapeForWorld" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_glg4v")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2DForBullets" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_4i3o2")
+debug_color = Color(0.890196, 0.309804, 0.239216, 0.419608)
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+modulate = Color(0.42, 0.13, 0.2, 1)
+rotation = -1.5708
+polygon = PackedVector2Array(-6, -6, -6, -6, -6, 0, 0, 7, 6, 0, 6, -6)
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Polygon2D"]
+occluder = SubResource("OccluderPolygon2D_wucat")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_metadata_flags = 0
+radius = 16.0
+max_neighbors = 20
+
+[node name="PathUpdateTimer" type="Timer" parent="."]
+wait_time = 0.75
+autostart = true
+
+[node name="AttackRange" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
+visible = false
+position = Vector2(42, 0)
+shape = SubResource("RectangleShape2D_pctlv")
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+
+[node name="GunController" parent="." instance=ExtResource("3_um8r4")]
+STARTING_WEAPON = ExtResource("4_2hij4")
+
+[node name="Stats" parent="." instance=ExtResource("5_12475")]
+
+[connection signal="area_shape_entered" from="Area2D" to="." method="_on_area_2d_area_shape_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="PathUpdateTimer" to="." method="_on_path_update_timer_timeout"]
+[connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="no_health" from="Stats" to="." method="_on_stats_no_health"]

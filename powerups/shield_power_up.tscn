@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://t08th0nyj66u"]
+
+[ext_resource type="PackedScene" uid="uid://covjna2g8aehp" path="res://powerups/power_up.tscn" id="1_a147o"]
+[ext_resource type="Script" path="res://powerups/shield_power_up.gd" id="2_bw3bf"]
+[ext_resource type="PackedScene" uid="uid://bmx4ahvoky14p" path="res://powerups/shield_effect.tscn" id="3_jafp1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rocv2"]
+radius = 31.9531
+
+[node name="ShieldPowerUp" instance=ExtResource("1_a147o")]
+script = ExtResource("2_bw3bf")
+power_up_time = 5.0
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_rocv2")
+
+[node name="shieldEffect" parent="." index="2" instance=ExtResource("3_jafp1")]

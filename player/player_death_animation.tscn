@@ -1,0 +1,61 @@
+[gd_scene load_steps=9 format=3 uid="uid://bh6prx6m3c4cr"]
+
+[ext_resource type="Script" path="res://projectiles/particles_explosion.gd" id="1_63sct"]
+[ext_resource type="Texture2D" uid="uid://byisovyrytw6n" path="res://assets/Laser Sprites/40.png" id="1_ghler"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2ty4w"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_t7cwc"]
+offsets = PackedFloat32Array(0, 0.155556, 0.362963, 0.681481, 1)
+colors = PackedColorArray(0.964706, 0.917647, 0.0156863, 0, 0.972549, 0.933333, 0.184314, 0.768627, 0.479705, 0.0464706, 0.353729, 1, 1.92523e-07, 0.552023, 0.496801, 1, 1, 1, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_q7xw3"]
+gradient = SubResource("Gradient_t7cwc")
+width = 5
+
+[sub_resource type="Curve" id="Curve_wvi1p"]
+max_value = 100.0
+_data = [Vector2(0, 8.18182), 0.0, 0.0, 0, 0, Vector2(0.674699, 52.7273), 0.0, 0.0, 0, 0, Vector2(0.963855, 79.0909), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_j1pqw"]
+curve = SubResource("Curve_wvi1p")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dgngc"]
+lifetime_randomness = 0.5
+direction = Vector3(0, 0, 0)
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 400.0
+initial_velocity_max = 652.63
+damping_min = 50.0
+damping_max = 300.0
+damping_curve = SubResource("CurveTexture_j1pqw")
+scale_min = 0.5
+color_ramp = SubResource("GradientTexture1D_q7xw3")
+hue_variation_min = -0.34
+hue_variation_max = 0.51
+turbulence_noise_strength = 7.1
+turbulence_noise_scale = 7.11
+turbulence_noise_speed_random = 4.53
+turbulence_influence_max = 0.22
+
+[node name="DeathAnimation" type="GPUParticles2D"]
+modulate = Color(1, 1, 1, 0.764706)
+self_modulate = Color(1, 1, 1, 0.666667)
+material = SubResource("CanvasItemMaterial_2ty4w")
+amount = 128
+process_material = SubResource("ParticleProcessMaterial_dgngc")
+texture = ExtResource("1_ghler")
+explosiveness = 0.65
+collision_base_size = 0.5
+trail_enabled = true
+trail_lifetime = 0.8
+script = ExtResource("1_63sct")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

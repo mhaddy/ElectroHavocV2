@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmxrinrv5kgpb"]
+
+[ext_resource type="Script" path="res://weapons/cannon.gd" id="1_qpn5e"]
+[ext_resource type="PackedScene" uid="uid://cyctmp0aj6i5l" path="res://enemies/enemy_bullet.tscn" id="2_ww814"]
+
+[node name="cannon" type="Node2D"]
+script = ExtResource("1_qpn5e")
+BULLET = ExtResource("2_ww814")
+BULLET_SPEED = 1000.0
+
+[node name="muzzle" type="Marker2D" parent="."]
+position = Vector2(2, 0)
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://g3bsvfnyap62"]
+
+[ext_resource type="Script" path="res://audio/audio_manager.gd" id="1_vfyof"]
+[ext_resource type="AudioStream" uid="uid://c5xvt1vs6nnpn" path="res://assets/musicSfx/spaceWhales.ogg" id="2_ffg4n"]
+
+[node name="AudioManager" type="Node"]
+script = ExtResource("1_vfyof")
+
+[node name="bgm" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_ffg4n")
+volume_db = -5.0
+autoplay = true
+
+[node name="effect_player" type="Node" parent="."]
+
+[node name="effect_player_1" type="AudioStreamPlayer" parent="effect_player"]
+volume_db = -15.0
+
+[node name="effect_player_2" type="AudioStreamPlayer" parent="effect_player"]
+volume_db = -15.0
+
+[node name="effect_player_3" type="AudioStreamPlayer" parent="effect_player"]
+volume_db = -15.0
+
+[node name="effect_player_4" type="AudioStreamPlayer" parent="effect_player"]
+volume_db = -15.0
+
+[node name="effect_player_5" type="AudioStreamPlayer" parent="effect_player"]
+volume_db = -15.0
+
+[node name="effect_player_6" type="AudioStreamPlayer" parent="effect_player"]
+volume_db = -15.0
+
+[node name="effect_player_7" type="AudioStreamPlayer" parent="effect_player"]
+volume_db = -15.0
+
+[node name="effect_player_8" type="AudioStreamPlayer" parent="effect_player"]
+volume_db = -15.0
+
+[node name="effect_player_9" type="AudioStreamPlayer" parent="effect_player"]
+volume_db = -15.0
+
+[node name="effect_player_10" type="AudioStreamPlayer" parent="effect_player"]
+volume_db = -15.0
