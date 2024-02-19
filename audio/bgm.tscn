@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://c475bkdbqqext"]
-
-[ext_resource type="AudioStream" uid="uid://c5xvt1vs6nnpn" path="res://assets/musicSfx/spaceWhales.ogg" id="1_r2kv5"]
-
-[node name="BGM" type="Node2D"]
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("1_r2kv5")
-autoplay = true
