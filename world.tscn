@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b708hq5w0hax6"]
+[gd_scene load_steps=14 format=3 uid="uid://b708hq5w0hax6"]
 
 [ext_resource type="Texture2D" uid="uid://cd5alpr7lvkhe" path="res://assets/tank.png" id="1_7dxvr"]
 [ext_resource type="Script" path="res://world.gd" id="1_kfj4g"]
@@ -22,12 +22,6 @@ shader_parameter/distfading = 0.65
 shader_parameter/saturation = 0.75
 shader_parameter/iResolution = Vector2(192, 192)
 shader_parameter/iMouse = Vector2(0, 0)
-
-[sub_resource type="Environment" id="Environment_1o2i3"]
-background_mode = 3
-tonemap_mode = 1
-tonemap_white = 0.9
-adjustment_enabled = true
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_3b8dq"]
 vertices = PackedVector2Array(1248, 32, 1245, 688, 32, 688, 32, 32)
@@ -122,9 +116,6 @@ remote_path = NodePath("../../../WorldCamera")
 
 [node name="enemies" type="Node2D" parent="."]
 y_sort_enabled = true
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_1o2i3")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 y_sort_enabled = true

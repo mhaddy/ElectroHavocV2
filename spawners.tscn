@@ -23,13 +23,13 @@ MAX_POWER_UPS = 0
 [node name="Wave2" type="Node" parent="Waves"]
 script = ExtResource("3_tye04")
 NUM_ENEMIES = 15
-SEC_BETWEEN_SPAWNS = 0.75
+SEC_BETWEEN_SPAWNS = 1.0
 MAX_POWER_UP_SPAWN_TIME = 7.0
 
 [node name="Wave3" type="Node" parent="Waves"]
 script = ExtResource("3_tye04")
 NUM_ENEMIES = 20
-SEC_BETWEEN_SPAWNS = 0.65
+SEC_BETWEEN_SPAWNS = 1.0
 MIN_POWER_UP_SPAWN_TIME = 4.0
 MAX_POWER_UP_SPAWN_TIME = 6.0
 MAX_POWER_UPS = 2
@@ -37,50 +37,50 @@ MAX_POWER_UPS = 2
 [node name="Wave4" type="Node" parent="Waves"]
 script = ExtResource("3_tye04")
 NUM_ENEMIES = 25
-SEC_BETWEEN_SPAWNS = 0.55
+SEC_BETWEEN_SPAWNS = 1.0
 MIN_POWER_UP_SPAWN_TIME = 4.0
 MAX_POWER_UP_SPAWN_TIME = 6.0
-MAX_POWER_UPS = 2
+MAX_POWER_UPS = 3
 
 [node name="Wave5" type="Node" parent="Waves"]
 script = ExtResource("3_tye04")
-NUM_ENEMIES = 35
-SEC_BETWEEN_SPAWNS = 0.45
-MIN_POWER_UP_SPAWN_TIME = 3.0
-MAX_POWER_UP_SPAWN_TIME = 5.0
-MAX_POWER_UPS = 3
+NUM_ENEMIES = 30
+SEC_BETWEEN_SPAWNS = 1.0
+MIN_POWER_UP_SPAWN_TIME = 2.0
+MAX_POWER_UP_SPAWN_TIME = 4.0
+MAX_POWER_UPS = 4
 
 [node name="Wave6" type="Node" parent="Waves"]
 script = ExtResource("3_tye04")
-NUM_ENEMIES = 45
-SEC_BETWEEN_SPAWNS = 0.45
-MIN_POWER_UP_SPAWN_TIME = 3.0
-MAX_POWER_UP_SPAWN_TIME = 5.0
-MAX_POWER_UPS = 3
+NUM_ENEMIES = 35
+SEC_BETWEEN_SPAWNS = 1.5
+MIN_POWER_UP_SPAWN_TIME = 1.0
+MAX_POWER_UP_SPAWN_TIME = 3.0
+MAX_POWER_UPS = 5
 
 [node name="Wave7" type="Node" parent="Waves"]
 script = ExtResource("3_tye04")
-NUM_ENEMIES = 55
-SEC_BETWEEN_SPAWNS = 0.35
-MIN_POWER_UP_SPAWN_TIME = 2.0
-MAX_POWER_UP_SPAWN_TIME = 4.0
-MAX_POWER_UPS = 4
+NUM_ENEMIES = 40
+SEC_BETWEEN_SPAWNS = 1.5
+MIN_POWER_UP_SPAWN_TIME = 1.0
+MAX_POWER_UP_SPAWN_TIME = 3.0
+MAX_POWER_UPS = 5
 
 [node name="Wave8" type="Node" parent="Waves"]
 script = ExtResource("3_tye04")
-NUM_ENEMIES = 65
-SEC_BETWEEN_SPAWNS = 0.25
+NUM_ENEMIES = 45
+SEC_BETWEEN_SPAWNS = 1.5
 MIN_POWER_UP_SPAWN_TIME = 2.0
 MAX_POWER_UP_SPAWN_TIME = 4.0
-MAX_POWER_UPS = 4
+MAX_POWER_UPS = 6
 
 [node name="Wave9" type="Node" parent="Waves"]
 script = ExtResource("3_tye04")
-NUM_ENEMIES = 75
-SEC_BETWEEN_SPAWNS = 0.1
+NUM_ENEMIES = 50
+SEC_BETWEEN_SPAWNS = 1.5
 MIN_POWER_UP_SPAWN_TIME = 2.0
 MAX_POWER_UP_SPAWN_TIME = 4.0
-MAX_POWER_UPS = 5
+MAX_POWER_UPS = 6
 
 [node name="SpawnPoints" type="Node" parent="."]
 

@@ -78,7 +78,7 @@ func _physics_process(_delta) -> void:
 	#				movement_target_position = Vector2.ZERO
 					
 				new_velocity = new_velocity.normalized()
-				new_velocity = new_velocity * stats.CHASE_SPEED
+				new_velocity *= stats.CHASE_SPEED
 				velocity = new_velocity
 				look_at(movement_target_position)
 				move_and_slide()

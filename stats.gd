@@ -3,10 +3,10 @@ class_name Stats
 
 signal no_health
 
-@export var MAX_HP: int = 1 + HP_modifier() # wave difficulty
+@export var MAX_HP: int = 1 + HP_modifier()
 @export var DAMAGE: int = 1
-@export var CHASE_SPEED: float = 100
-@export var POINTS: int = 1 + points_modifier() # wave difficulty
+@export var CHASE_SPEED: float = 100 + chase_modifier()
+@export var POINTS: int = 1 + points_modifier()
 
 @onready var current_HP: int = MAX_HP:
 	get:
@@ -17,16 +17,17 @@ signal no_health
 			emit_signal("no_health")
 
 func _ready() -> void:
-	# make enemies chase 10% quicker each wave
-	# Globals.wave_num-1 to make it slightly slower
-	var chase_multiplier = float("1.%s" % (Globals.wave_num))
-	CHASE_SPEED *= chase_multiplier
+	print ("Chase Speed now ", CHASE_SPEED)
 
-# increment enemy health by 1 every other wave
+# increase chase speed by n each wave
+func chase_modifier() -> float:
+	return float(10*Globals.wave_num)
+
+# increment enemy health by n every other wave
 func HP_modifier() -> int:
 	return floor(clamp(Globals.wave_num/2, 0, Globals.wave_num/2))
 
 # TODO: vary this by enemy type or something more complex
-# increment enemy points by 1 every other wave
+# increment enemy points by n every other wave
 func points_modifier() -> int:
 	return floor(clamp(Globals.wave_num/2, 0, Globals.wave_num/2))
