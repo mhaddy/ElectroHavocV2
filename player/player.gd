@@ -72,7 +72,7 @@ func _on_area_2d_body_entered(body) -> void:
 		if not invincibility:
 			stats.current_HP -= body.damage
 			SignalBus.emit_signal("update_health", -body.damage)
-			#print("enemy hit me ", stats.current_HP, "/", stats.MAX_HP, ", ", body.damage)
+			# print("enemy hit me ", stats.current_HP, "/", stats.MAX_HP, ", ", body.damage)
 			blink_animation_player.play("Start")
 			# this is just to show the shield is taking damage
 			apply_power_up(power_up.SHIELD, INVINCIBILITY_DELAY)

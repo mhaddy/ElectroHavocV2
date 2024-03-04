@@ -21,8 +21,22 @@ func _ready() -> void:
 
 # increase chase speed by n each wave
 func chase_modifier() -> float:
-	return float(10*Globals.wave_num)
+	var min_chase_speed: float = 100
+	var max_chase_speed: float = float(20*Globals.wave_num)
+	var weight_factor: float = 0.8
+	var rand_value: float = randf()
+	var speed: float
+	
+	# Apply the weight to bias the random number
+	if rand_value < weight_factor:
+		# 80% chance to get a number closer to max_chase_speed
+		speed = randf_range(max_chase_speed - 0.2 * max_chase_speed, max_chase_speed)
+	else:
+		# 20% chance to get a number in the full range
+		speed = randf_range(min_chase_speed, max_chase_speed)
 
+	return ceil(speed)
+	
 # increment enemy health by n every other wave
 func HP_modifier() -> int:
 	return floor(clamp(Globals.wave_num/2, 0, Globals.wave_num/2))

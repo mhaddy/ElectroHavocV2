@@ -11,6 +11,7 @@ var Death_Animation: PackedScene = preload("res://enemies/death_animation.tscn")
 @onready var polygon_2d = $Polygon2D
 @onready var attack_light: PointLight2D = $AttackLight
 @onready var points_label = $PointsLabel
+@onready var collision_shape_for_world = $CollisionShapeForWorld
 
 enum state {
 	SEEKING,
@@ -141,7 +142,8 @@ func wave_modifier() -> void:
 		Color(0.41,0.14,0.19,1)
 	]
 	
-	self.scale *= scale_multiplier
+	self.scale *= scale_multiplier # size the polygon
+	collision_shape_for_world.scale *= scale_multiplier # size the hitbox
 	polygon_2d.modulate = colors[randi() % colors.size()]
 	
 # player shoots enemy

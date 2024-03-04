@@ -6,9 +6,6 @@ extends Control
 @onready var halo_effect = $HaloEffect
 @onready var panel = $Panel
 
-# TODO: Include other stats here
-# Make this feel different than the game_over_modal, from which it's copied
-
 func _ready() -> void:
 	high_score_num.text = str(Globals.high_score)
 	score_num.text = str(Globals.score)

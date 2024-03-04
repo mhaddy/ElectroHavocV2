@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://devfqwbwpqxty"]
+[gd_scene load_steps=9 format=3 uid="uid://devfqwbwpqxty"]
 
 [ext_resource type="Script" path="res://enemies/enemy.gd" id="1_n21xo"]
 [ext_resource type="Texture2D" uid="uid://cxaj02b7kmw4j" path="res://assets/light.png" id="2_d4bmo"]
@@ -6,11 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://dmxrinrv5kgpb" path="res://weapons/enemy_cannon.tscn" id="4_2hij4"]
 [ext_resource type="PackedScene" uid="uid://vpbs6vjemmyl" path="res://stats.tscn" id="5_12475"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_glg4v"]
-size = Vector2(16, 14)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4i3o2"]
-size = Vector2(17, 16)
+size = Vector2(15, 14)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_wucat"]
 polygon = PackedVector2Array(-4.99998, -5.00002, -5, -1.81e-05, -2.17199e-05, 6, 5, 1.81e-05, 5.00002, -4.99998)
@@ -47,8 +44,9 @@ energy = 0.5
 shadow_enabled = true
 texture = ExtResource("2_d4bmo")
 
-[node name="CollisionShapeForWorld" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_glg4v")
+[node name="CollisionShapeForWorld" type="CollisionPolygon2D" parent="."]
+position = Vector2(0.5, 0)
+polygon = PackedVector2Array(-5.5, -5, -0.5, -5, 5.5, 0, -0.5, 5, -5.5, 5, -5.5, -5, -5.5, -5, -5.5, -5)
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 4
