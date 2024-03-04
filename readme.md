@@ -1,4 +1,4 @@
-# ElectroHavocV1
+# Electro Havoc
 Top-down 2d shooter for a game jam with the prompt "chain reaction". Dubbed Electro Havoc, the objective is to stay alive as long as possible while destroying as many enemies as possible. Inspired by Geometry Wars from the golden days.
 
 > Play it now: https://mhaddy.itch.io/electro-havoc-v2
@@ -6,7 +6,7 @@ Top-down 2d shooter for a game jam with the prompt "chain reaction". Dubbed Elec
 Built in the Godot 4.x game engine.
 
 ## How to use
-Clone this repo and then open it up in Godoto 4.x. Run project and enjoy!
+Clone this repo and then open it up in Godot 4.x. Run project and enjoy!
 
 ## Key Features
 * 10 waves of increasingly difficult enemies (health, speed, size)
@@ -23,3 +23,4 @@ Clone this repo and then open it up in Godoto 4.x. Run project and enjoy!
 
 ## Known Bugs
 * Game can get a big laggy on Wave 7+ due to number of enemies
+* Enemies can get stuck on the environment (need to apply Godot 4.2.1 2D navmeshes)
