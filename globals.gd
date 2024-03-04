@@ -2,7 +2,7 @@ extends Node
 
 # TODO: Is there a reason why I'd use setget here?
 
-var game_version: float = 0.8
+var game_version: float = 0.9
 var wave_num: int = 1
 #	get:
 #		return wave_num
