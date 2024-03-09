@@ -22,5 +22,4 @@ Clone this repo and then open it up in Godot 4.x. Run project and enjoy!
 * Address performance issues in the browser
 
 ## Known Bugs
-* Game can get a big laggy on Wave 7+ due to number of enemies
-* Enemies can get stuck on the environment (need to apply Godot 4.2.1 2D navmeshes)
+* Enemies can stick to the player in higher waves

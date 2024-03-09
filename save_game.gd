@@ -38,7 +38,7 @@ func load_save_game() -> void:
 		var data = json.data
 		
 		if typeof(data) == TYPE_DICTIONARY:
-			print("save data, ", data)
+			#print("save data, ", data)
 
 			# TODO: Feels like there's a better way to handle this
 			# especially as there's more [complex] data to load...

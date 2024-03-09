@@ -93,6 +93,10 @@ secondary_action={
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Enemy"
 
+[navigation]
+
+2d/default_cell_size=8.0
+
 [physics]
 
 3d/default_gravity_vector=Vector3(0, 0, 0)

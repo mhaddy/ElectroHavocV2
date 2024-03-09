@@ -2,7 +2,7 @@ extends Node
 
 # TODO: Is there a reason why I'd use setget here?
 
-var game_version: float = 0.9
+var game_version: float = 0.93
 var wave_num: int = 1
 #	get:
 #		return wave_num
@@ -11,7 +11,7 @@ var wave_num: int = 1
 #		print ("new wave ", wave_num)
 var score: int = 0
 var high_score: int
-var player_position: Vector2 # updated on death
+var player_position: Vector2 # updated on player death
 var player_hud_health: int
 
 var _save = SaveGame.new()
