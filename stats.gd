@@ -19,7 +19,7 @@ signal no_health
 # increase chase speed by n each wave
 func chase_modifier() -> float:
 	var min_chase_speed: float = 100
-	var max_chase_speed: float = float(20*Globals.wave_num)
+	var max_chase_speed: float = float(10*Globals.wave_num)
 	var weight_factor: float = 0.8
 	var rand_value: float = randf()
 	var speed: float

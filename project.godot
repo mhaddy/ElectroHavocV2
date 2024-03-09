@@ -95,7 +95,7 @@ secondary_action={
 
 [navigation]
 
-2d/default_cell_size=2.0
+2d/default_cell_size=8.0
 
 [physics]
 

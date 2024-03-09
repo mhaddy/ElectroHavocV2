@@ -67,7 +67,6 @@ occluder = SubResource("OccluderPolygon2D_wucat")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 10.0
-target_desired_distance = 5.0
 path_max_distance = 50.0
 path_metadata_flags = 0
 radius = 16.0
