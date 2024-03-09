@@ -16,9 +16,6 @@ signal no_health
 		if current_HP <= 0:
 			emit_signal("no_health")
 
-func _ready() -> void:
-	print ("Chase Speed now ", CHASE_SPEED)
-
 # increase chase speed by n each wave
 func chase_modifier() -> float:
 	var min_chase_speed: float = 100

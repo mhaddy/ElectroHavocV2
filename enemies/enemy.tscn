@@ -66,13 +66,12 @@ polygon = PackedVector2Array(-6, -6, -6, -6, -6, 0, 0, 7, 6, 0, 6, -6)
 occluder = SubResource("OccluderPolygon2D_wucat")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 10.0
+target_desired_distance = 5.0
+path_max_distance = 50.0
 path_metadata_flags = 0
 radius = 16.0
 max_neighbors = 20
-
-[node name="PathUpdateTimer" type="Timer" parent="."]
-wait_time = 0.75
-autostart = true
 
 [node name="AttackRange" type="Area2D" parent="."]
 collision_layer = 4
@@ -94,7 +93,6 @@ STARTING_WEAPON = ExtResource("4_2hij4")
 
 [connection signal="area_shape_entered" from="Area2D" to="." method="_on_area_2d_area_shape_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="timeout" from="PathUpdateTimer" to="." method="_on_path_update_timer_timeout"]
 [connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="no_health" from="Stats" to="." method="_on_stats_no_health"]
