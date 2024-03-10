@@ -10,6 +10,11 @@ func _ready() -> void:
 	
 	# enable for full screen
 	# DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
+	
+	if OS.is_userfs_persistent() == true:
+		print("os")
+	else:
+		print("online")
 
 func _on_try_again() -> void:
 	var players: Array = get_tree().get_nodes_in_group("player")

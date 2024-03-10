@@ -1,9 +1,6 @@
 extends GPUParticles2D
 
-# TODO: Reduce wait time on timer from 2s to something lower to tweak
-# splash damage effect
-
-#var damage: int = 1
+# Reduce wait time on timer to lower splash damage effect
 
 func _ready():
 	one_shot = true

@@ -15,11 +15,7 @@ Clone this repo and then open it up in Godot 4.x. Run project and enjoy!
 * Enemy pathfinding
 * BG music and sfx
 * Enemy explosions damage other enemies
-* Shield power-up (more coming soon!)
-
-## Planned Additions
-* Add rapid fire or new weapon power-up
-* Address performance issues in the browser
+* Shield and rapid fire power-ups
 
 ## Known Bugs
 * Enemies can stick to the player in higher waves

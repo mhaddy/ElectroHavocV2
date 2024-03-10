@@ -17,7 +17,7 @@ var enemies_remaining_to_spawn: int
 var enemies_killed_this_wave: int
 
 var all_power_ups: Array = [
-	#preload("res://powerups/shield_power_up.tscn"),
+	preload("res://powerups/shield_power_up.tscn"),
 	preload("res://powerups/mega_fire_power_up.tscn")
 ]
 var power_ups_spawned_this_wave: int = 0

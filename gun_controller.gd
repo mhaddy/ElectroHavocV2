@@ -15,7 +15,6 @@ func _ready() -> void:
 
 func equip_weapon(weapon_to_equip) -> void:
 	if equipped_weapon:
-		print("delete cur weap")
 		equipped_weapon.queue_free()
 
 	match weapon_to_equip:

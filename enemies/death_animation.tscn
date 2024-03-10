@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://projectiles/particles_explosion.gd" id="1_nf3m1"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2ty4w"]
-blend_mode = 1
+blend_mode = 4
 
 [sub_resource type="Curve" id="Curve_wvi1p"]
 max_value = 100.0
@@ -50,12 +50,10 @@ amount = 256
 process_material = SubResource("ParticleProcessMaterial_dgngc")
 explosiveness = 0.65
 collision_base_size = 0.5
-trail_enabled = true
 trail_lifetime = 0.8
 script = ExtResource("1_nf3m1")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 2.0
 one_shot = true
 autostart = true
 
