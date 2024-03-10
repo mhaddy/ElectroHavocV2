@@ -126,6 +126,11 @@ libraries = {
 [node name="shieldEffect" parent="." instance=ExtResource("7_j1wf5")]
 visible = false
 
+[node name="MegaFireTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="no_health" from="Stats" to="." method="_on_stats_no_health"]
 [connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]
+[connection signal="timeout" from="MegaFireTimer" to="." method="_on_mega_fire_timer_timeout"]

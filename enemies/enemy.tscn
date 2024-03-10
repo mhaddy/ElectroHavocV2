@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://devfqwbwpqxty"]
+[gd_scene load_steps=8 format=3 uid="uid://devfqwbwpqxty"]
 
 [ext_resource type="Script" path="res://enemies/enemy.gd" id="1_n21xo"]
 [ext_resource type="Texture2D" uid="uid://cxaj02b7kmw4j" path="res://assets/light.png" id="2_d4bmo"]
 [ext_resource type="PackedScene" uid="uid://bm6effwt4a5pp" path="res://gun_controller.tscn" id="3_um8r4"]
-[ext_resource type="PackedScene" uid="uid://dmxrinrv5kgpb" path="res://weapons/enemy_cannon.tscn" id="4_2hij4"]
 [ext_resource type="PackedScene" uid="uid://vpbs6vjemmyl" path="res://stats.tscn" id="5_12475"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4i3o2"]
@@ -86,7 +85,6 @@ wait_time = 0.25
 one_shot = true
 
 [node name="GunController" parent="." instance=ExtResource("3_um8r4")]
-STARTING_WEAPON = ExtResource("4_2hij4")
 
 [node name="Stats" parent="." instance=ExtResource("5_12475")]
 

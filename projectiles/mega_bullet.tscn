@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://bsrq53k2rprjr"]
+
+[ext_resource type="Script" path="res://projectiles/mega_bullet.gd" id="1_c2rja"]
+[ext_resource type="Texture2D" uid="uid://c3nu68vdnf7se" path="res://assets/Laser Sprites/02.png" id="2_l0exc"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ayxu2"]
+radius = 6.99999
+height = 20.0
+
+[node name="bullet" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 3
+gravity_scale = 0.0
+max_contacts_reported = 1
+contact_monitor = true
+script = ExtResource("1_c2rja")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_l0exc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ayxu2")
+debug_color = Color(0.886275, 0.231373, 0.592157, 0.654902)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

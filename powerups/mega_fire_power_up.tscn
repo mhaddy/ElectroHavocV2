@@ -1,0 +1,65 @@
+[gd_scene load_steps=12 format=3 uid="uid://dt67ddfwfc7fv"]
+
+[ext_resource type="PackedScene" uid="uid://covjna2g8aehp" path="res://powerups/power_up.tscn" id="1_0s737"]
+[ext_resource type="Script" path="res://powerups/mega_fire_power_up.gd" id="2_6gwlq"]
+[ext_resource type="Texture2D" uid="uid://c3nu68vdnf7se" path="res://assets/Laser Sprites/02.png" id="3_cugvb"]
+[ext_resource type="Texture2D" uid="uid://dg755v10oqvwa" path="res://assets/Line1.png" id="4_oi28u"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rocv2"]
+radius = 31.9531
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_244eu"]
+blend_mode = 4
+
+[sub_resource type="Curve" id="Curve_nnbh4"]
+_data = [Vector2(0.0376344, 0.010989), 0.0, 0.0, 0, 0, Vector2(0.462366, 0.241758), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_hd65a"]
+curve = SubResource("Curve_nnbh4")
+
+[sub_resource type="Gradient" id="Gradient_45cc3"]
+offsets = PackedFloat32Array(0, 0.177215, 0.506329, 0.822785, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.959798, 0.929122, 0.989138, 1, 0.988623, 0.548305, 0.422378, 1, 1, 1, 0.192157, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_lgnnd"]
+gradient = SubResource("Gradient_45cc3")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1o3nr"]
+particle_flag_align_y = true
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 40.0
+emission_ring_inner_radius = 20.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -2.81
+radial_accel_max = 10.0
+scale_min = 0.25
+scale_max = 0.5
+color_ramp = SubResource("GradientTexture1D_lgnnd")
+alpha_curve = SubResource("CurveTexture_hd65a")
+hue_variation_min = -0.57
+hue_variation_max = 0.34
+anim_speed_min = 3.44
+anim_speed_max = 10.17
+
+[node name="MegaFirePowerUp" instance=ExtResource("1_0s737")]
+script = ExtResource("2_6gwlq")
+power_up_time = 5.0
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_rocv2")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="2"]
+position = Vector2(0, 1)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("3_cugvb")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." index="3"]
+material = SubResource("CanvasItemMaterial_244eu")
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_1o3nr")
+texture = ExtResource("4_oi28u")

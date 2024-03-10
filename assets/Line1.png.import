@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dof0ngcimhxbq"
-path="res://.godot/imported/40.png-3c8d7548732e633cdb13804974686552.ctex"
+uid="uid://dg755v10oqvwa"
+path="res://.godot/imported/Line1.png-a5a9f1de3d85db35c89190636df43880.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Laser Sprites/40.png"
-dest_files=["res://.godot/imported/40.png-3c8d7548732e633cdb13804974686552.ctex"]
+source_file="res://assets/Line1.png"
+dest_files=["res://.godot/imported/Line1.png-a5a9f1de3d85db35c89190636df43880.ctex"]
 
 [params]
 

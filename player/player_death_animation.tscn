@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://bh6prx6m3c4cr"]
 
 [ext_resource type="Script" path="res://projectiles/particles_explosion.gd" id="1_63sct"]
-[ext_resource type="Texture2D" uid="uid://byisovyrytw6n" path="res://assets/Laser Sprites/40.png" id="1_ghler"]
+[ext_resource type="Texture2D" uid="uid://dof0ngcimhxbq" path="res://assets/Laser Sprites/40.png" id="1_cenbb"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2ty4w"]
 blend_mode = 1
@@ -25,9 +25,9 @@ curve = SubResource("Curve_wvi1p")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dgngc"]
 lifetime_randomness = 0.5
 direction = Vector3(0, 0, 0)
-gravity = Vector3(0, 0, 0)
 initial_velocity_min = 400.0
 initial_velocity_max = 652.63
+gravity = Vector3(0, 0, 0)
 damping_min = 50.0
 damping_max = 300.0
 damping_curve = SubResource("CurveTexture_j1pqw")
@@ -46,7 +46,7 @@ self_modulate = Color(1, 1, 1, 0.666667)
 material = SubResource("CanvasItemMaterial_2ty4w")
 amount = 128
 process_material = SubResource("ParticleProcessMaterial_dgngc")
-texture = ExtResource("1_ghler")
+texture = ExtResource("1_cenbb")
 explosiveness = 0.65
 collision_base_size = 0.5
 trail_enabled = true

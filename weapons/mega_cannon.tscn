@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bebrg0qo5d5ow"]
+
+[ext_resource type="Script" path="res://weapons/mega_cannon.gd" id="1_klbu7"]
+[ext_resource type="PackedScene" uid="uid://bsrq53k2rprjr" path="res://projectiles/mega_bullet.tscn" id="2_ahobn"]
+
+[node name="cannon" type="Node2D"]
+script = ExtResource("1_klbu7")
+BULLET = ExtResource("2_ahobn")
+
+[node name="muzzle" type="Marker2D" parent="."]
+position = Vector2(2, 0)
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
