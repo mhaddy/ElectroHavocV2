@@ -8,7 +8,7 @@ script = ExtResource("1_klbu7")
 BULLET = ExtResource("2_ahobn")
 
 [node name="muzzle" type="Marker2D" parent="."]
-position = Vector2(2, 0)
+position = Vector2(4, 0)
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true

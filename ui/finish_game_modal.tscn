@@ -10,6 +10,7 @@
 script = ExtResource("2_v6cx0")
 
 [node name="Panel" parent="." index="0"]
+self_modulate = Color(1, 1, 1, 0.72549)
 offset_left = -164.0
 offset_top = -160.0
 offset_right = 164.0

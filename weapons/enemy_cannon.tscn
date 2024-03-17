@@ -6,7 +6,6 @@
 [node name="cannon" type="Node2D"]
 script = ExtResource("1_qpn5e")
 BULLET = ExtResource("2_ww814")
-BULLET_SPEED = 1000.0
 
 [node name="muzzle" type="Marker2D" parent="."]
 position = Vector2(2, 0)

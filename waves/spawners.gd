@@ -77,12 +77,13 @@ func pick_spawn_point() -> int:
 func pick_power_up_spawn_time(current_wave: Wave) -> int:
 	return randi_range(current_wave.MIN_POWER_UP_SPAWN_TIME, current_wave.MAX_POWER_UP_SPAWN_TIME)
 	
-func spawn_power_ups(current_wave_index: int) -> void:
+func spawn_power_ups() -> void:
 	var spawn_point: int = pick_spawn_point()
 	var power_up_preload: PackedScene = all_power_ups[randi() % all_power_ups.size()]
 	var power_up: power_ups = power_up_preload.instantiate()
 	
 	add_child(power_up)
+	Globals.tween_pulsate(power_up)
 	power_up.global_position = all_spawn_points[spawn_point].global_position
 	
 	power_ups_spawned_this_wave += 1
@@ -110,4 +111,4 @@ func _on_game_over() -> void:
 func _on_power_up_spawn_timer_timeout():
 	if power_ups_spawned_this_wave < current_wave.MAX_POWER_UPS:
 		power_up_spawn_timer.wait_time = pick_power_up_spawn_time(current_wave)
-		spawn_power_ups(current_wave_index)
+		spawn_power_ups()

@@ -1,8 +1,12 @@
 extends Node
 
+const Death_Animation: PackedScene = preload("res://player/player_death_animation.tscn")
+const Enemy_Death_Animation: PackedScene = preload("res://enemies/death_animation.tscn")
+const Explosion: PackedScene = preload("res://projectiles/particles_explosion.tscn")
+
 # TODO: Is there a reason why I'd use setget here?
 
-var game_version: float = 0.93
+var game_version: float = 0.98
 var wave_num: int = 1
 #	get:
 #		return wave_num

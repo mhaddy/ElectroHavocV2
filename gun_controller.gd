@@ -4,14 +4,14 @@ extends Node
 # weapon_types {}
 @export var CANNON: PackedScene
 @export var MEGA_CANNON: PackedScene
+@export var STARTING_WEAPON: Player.weapon_types
 
 @onready var weapon_mount_point = get_parent().find_child("WeaponMountPoint")
 
 var equipped_weapon: Node
 
 func _ready() -> void:
-	# starting weapon
-	equip_weapon(Player.weapon_types.CANNON)
+	equip_weapon(STARTING_WEAPON)
 
 func equip_weapon(weapon_to_equip) -> void:
 	if equipped_weapon:

@@ -7,7 +7,6 @@ extends CanvasLayer
 @onready var high_score_num = $HighScoreLabel/HighScoreNum
 @onready var wave_label = $WaveLabel
 @onready var chat_messages = $ChatQueue/ChatMessagesLabel
-#@onready var health_bar = $HealthLabel/HealthBackground/HealthBar
 @onready var HEALTH_BAR: PackedScene = preload("res://ui/health_bar.tscn")
 @onready var health_background = $HealthLabel/HealthBackground
 

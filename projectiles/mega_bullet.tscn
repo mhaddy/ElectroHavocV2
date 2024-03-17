@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://c3nu68vdnf7se" path="res://assets/Laser Sprites/02.png" id="2_l0exc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ayxu2"]
-radius = 6.99999
-height = 20.0
+radius = 8.0
+height = 22.0
 
-[node name="bullet" type="RigidBody2D"]
+[node name="bullet" type="RigidBody2D" groups=["bullet"]]
 collision_layer = 2
 collision_mask = 3
 gravity_scale = 0.0

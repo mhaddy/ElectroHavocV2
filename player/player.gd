@@ -26,7 +26,6 @@ enum weapon_types {
 	MEGA_CANNON
 }
 
-var Death_Animation: PackedScene = preload("res://player/player_death_animation.tscn")
 var explosion_sfx: Array = [
 	"res://assets/musicSfx/playerExplosion.wav"
 ]
@@ -74,7 +73,7 @@ func apply_power_up(type: power_up, duration: float) -> void:
 		shield_effect.visible = true
 		shield_effect.self_modulate.a = 0.5
 	elif type == power_up.MEGA_FIRE:
-		gun_controller.equip_weapon(power_up.MEGA_FIRE)
+		gun_controller.equip_weapon(Player.weapon_types.MEGA_CANNON)
 		mega_fire_timer.start(duration + mega_fire_timer.time_left)
 		SignalBus.emit_signal("chat_queue", "> Mega Fire power-up for "+str(mega_fire_timer.time_left)+"s")
 	else: 
@@ -82,7 +81,7 @@ func apply_power_up(type: power_up, duration: float) -> void:
 
 # enemy collides with/damages player
 func _on_area_2d_body_entered(body) -> void:
-	if "enemy" in body.name:
+	if body.is_in_group("enemy"):
 		if not invincibility:
 			stats.current_HP -= body.damage
 			SignalBus.emit_signal("update_health", -body.damage)
@@ -93,10 +92,9 @@ func _on_area_2d_body_entered(body) -> void:
 
 func _on_stats_no_health():
 	Globals.player_position = global_position
-	print ("game over!")
 	SignalBus.emit_signal("game_over")
 	
-	var explosion = Death_Animation.instantiate()
+	var explosion = Globals.Death_Animation.instantiate()
 	explosion.position = get_global_position()
 	get_tree().get_root().add_child(explosion)
 	

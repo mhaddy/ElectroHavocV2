@@ -8,6 +8,9 @@
 [node name="GameOverModal" instance=ExtResource("1_k6bx1")]
 script = ExtResource("2_ooc8r")
 
+[node name="Panel" parent="." index="0"]
+self_modulate = Color(1, 1, 1, 0.72549)
+
 [node name="GameOverLabel" type="Label" parent="Panel" index="0"]
 layout_mode = 1
 anchors_preset = 5

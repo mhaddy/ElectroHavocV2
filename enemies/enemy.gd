@@ -1,8 +1,6 @@
 extends CharacterBody2D
 class_name Enemy
 
-var Death_Animation: PackedScene = preload("res://enemies/death_animation.tscn")
-
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var stats: Stats = $Stats
 @onready var attack_timer: Timer = $AttackTimer
@@ -102,19 +100,6 @@ func identify_player() -> CharacterBody2D:
 	
 	return first_player
 	
-func self_destruct() -> void:
-	await get_tree().create_timer(2).timeout
-	# self destruct all enemies at once
-	get_tree().call_group("enemy", "_on_stats_no_health")
-	
-	# TODO: Want this to iterate through enemies and destroy them
-	# but currently just destroys all at once
-	# likely need to put this in another script as this is in the instance
-	# getting destroyed...
-#	var enemies_alive = get_tree().get_nodes_in_group("enemy")
-#	for enemy in enemies_alive:
-#		stats.current_HP = 0
-
 # enemy modifiers/wave
 # HP, CHASE_SPEED set in stats
 func wave_modifier() -> void:
@@ -132,23 +117,22 @@ func wave_modifier() -> void:
 	
 # player shoots enemy
 func _on_area_2d_body_entered(body) -> void:
-	if "bullet" in body.name:
+	if body.is_in_group("bullet"):
 		stats.current_HP -= body.damage
 #		print("hit ", stats.current_HP, "/", stats.MAX_HP)
 
 # enemy dies
 func _on_stats_no_health() -> void:
-	var explosion = Death_Animation.instantiate()
+	var explosion = Globals.Enemy_Death_Animation.instantiate()
 	explosion.global_position = get_global_position()
-	# get_tree().get_root() -- I don't think it makes a difference which is used
 	get_parent().call_deferred("add_child", explosion)
 	queue_free()
-#	call_deferred('free')
 	
 	AudioManager.play_sfx(Globals.random_sfx(explosion_sfx))
 	
-	if not player_dead:
+	if player_dead == false:
 		SignalBus.emit_signal("update_score", points)
+
 # TODO: change to raycast?
 func _on_attack_range_body_entered(_body) -> void:
 	pass
@@ -166,19 +150,19 @@ func _on_start_game() -> void:
 	
 func _on_game_over() -> void:
 	player_dead = true
-	self_destruct()
 
 # TODO: instance stats on death_animation scene
 # use stats.DAMAGE in node, then use area.damage here
 func _on_area_2d_area_shape_entered(_area_rid, area, _area_shape_index, _local_shape_index):
-	if area.is_in_group("splash_damage"):
-		if can_splash_damage:
-			stats.current_HP -= splash_damage
-			
-			SignalBus.emit_signal("update_score", splash_damage_points)
-			SignalBus.emit_signal("chat_queue", "Splash damage bonus!")
-			
-			# limit damage applied by enemy explosion
-			can_splash_damage = false
-			await get_tree().create_timer(splash_damage_delay).timeout
-			can_splash_damage = true
+	if not player_dead:
+		if area.is_in_group("splash_damage"):
+			if can_splash_damage:
+				stats.current_HP -= splash_damage
+				
+				SignalBus.emit_signal("update_score", splash_damage_points)
+				SignalBus.emit_signal("chat_queue", "Splash damage bonus!")
+				
+				# limit damage applied by enemy explosion
+				can_splash_damage = false
+				await get_tree().create_timer(splash_damage_delay).timeout
+				can_splash_damage = true

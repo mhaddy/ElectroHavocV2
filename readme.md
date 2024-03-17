@@ -14,8 +14,5 @@ Clone this repo and then open it up in Godot 4.x. Run project and enjoy!
 * High score persists to disk
 * Enemy pathfinding
 * BG music and sfx
-* Enemy explosions damage other enemies
+* Enemy explosions create a blast radius and cause splash damage to other enemies
 * Shield and rapid fire power-ups
-
-## Known Bugs
-* Enemies can stick to the player in higher waves
