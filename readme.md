@@ -3,7 +3,7 @@ Top-down 2d shooter for a game jam with the prompt "chain reaction". Dubbed Elec
 
 > Play it now: https://mhaddy.itch.io/electro-havoc-v2
 >
-> Electro Havoc is now available on Steam Early Access with full Steamworks integration! The game has been overhauled - check it out: https://store.steampowered.com/app/2980110/Electro_Havoc/
+> 2025/04/18: Electro Havoc is now available on Steam Early Access with full Steamworks integration! The game has been overhauled - check it out: https://store.steampowered.com/app/2980110/Electro_Havoc/
 
 Built in the Godot 4.x game engine.
 
