@@ -1,7 +1,7 @@
 # Electro Havoc
 Top-down 2d shooter for a game jam with the prompt "chain reaction". Dubbed Electro Havoc, the objective is to stay alive as long as possible while destroying as many enemies as possible. Inspired by Geometry Wars from the golden days.
 
-> Play it now: https://mhaddy.itch.io/electro-havoc-v2
+> 2024/03/17: Play it now: https://mhaddy.itch.io/electro-havoc-v2
 >
 > 2025/04/18: Electro Havoc is now available on Steam Early Access with full Steamworks integration! The game has been overhauled - check it out: https://store.steampowered.com/app/2980110/Electro_Havoc/
 
